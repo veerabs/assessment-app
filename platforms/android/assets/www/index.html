@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+  <!-- Removing 'unsafe-eval'. If needed, I will figure out a way around it  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com http://assessment.express 'unsafe-eval' 'unsafe-inline' ws://*; style-src 'self' 'unsafe-inline'; media-src *
+  'self' data: gap: https://ssl.gstatic.com http://assessment.express ; img-src *   data: gap: https://ssl.gstatic.com http://assessment.express ">
+
+  <!-- Required meta tags-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <link rel="stylesheet" href="lib/font-awesome-4.5.0/css/font-awesome.min.css" />
+
+  <title>Assessment Express</title>
+</head>
+
+<body class="theme-purple">
+  <!-- Status bar overlay for full screen mode (PhoneGap) -->
+  <div class="statusbar-overlay"></div>
+
+  <!-- Panels overlay-->
+  <div class="panel-overlay"></div>
+  <!-- Left panel with cover effect-->
+  <div class="panel panel-left panel-cover">
+    <!--<div class="content-block">-->
+    <div class="content-block-title">Menu</div>
+    <div class="list-block">
+      <ul>
+        <li>
+          <a href="#" class="training-link item-content list-panel-all close-panel item-link">
+            <div class="item-inner">
+              <div class="item-title">Training</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <!--<a href="#" class="favorites-link item-content list-panel-all close-panel item-link">
+            <div class="item-inner">
+              <div class="item-title">Logout</div>
+            </div>
+          </a>-->
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Views -->
+  <div class="views">
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main">
+      <!-- Top Navbar-->
+      <div class="navbar">
+        <div class="navbar-inner" data-page="index">
+
+          <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+          <div class="center sliding">Assessment Express</div>
+        </div>
+      </div>
+      <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+      <div class="pages navbar-through toolbar-through">
+        <!-- Page, "data-page" contains page name -->
+        <div data-page="index" class="page">
+          <!-- Scrollable page content -->
+          <div class="page-content">
+          <div class="content-block">
+             <div class="content-block-title"><p>Welcome to your assessment!</p></div>
+             <form action="#" method="GET" id="login">
+              <div class="list-block">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Username</div>
+                      <div class="item-input">
+                        <input type="text" name="username" placeholder="Your username"/>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Password</div>
+                      <div class="item-input">
+                        <input type="password" name="password" placeholder="Your password"/>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="list-block">
+                <ul>
+                  <li><input type="submit" class="button button-big button-fill search-submit"  value="Sign In" /></li>
+                  <li><input type="button"  onclick="register()" class="button button-big button-fill search-submit" value="Sign Up" /></li>
+                </ul>
+                <div class="list-block-label">
+                  <p></p>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/template7" id="register">
+    <!-- Dynamic navbar for iOS theme -->
+
+    <div class="page" data-page="register">
+
+        <div class="page-content">
+         <div class="content-block">
+         <div class="content-block-title">Please fill in your details:</div>
+           <form action="#" method="POST" id="register">
+              <div class="list-block">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Name</div>
+                      <div class="item-input">
+                        <input type="text" name="student[name]" placeholder="Your Name"/>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Username</div>
+                      <div class="item-input">
+                        <input type="text" id="username" name="student[username]" placeholder="Your Username"/>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Password</div>
+                      <div class="item-input">
+                        <input type="password" id="password" name="student[password]" placeholder="Your Password"/>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Repeat Password</div>
+                      <div class="item-input">
+                        <input type="password" name="student[password_confirmation]" placeholder="Your Password"/>
+                      </div>
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+              <div class="list-block">
+                <ul>
+                <input type="hidden" name="student[email]" value="unused@scb.co.th" />
+                  <li><input type="button" onclick="signup(this);" class="button button-big button-fill register-submit"  value="Sign In" /></li>
+                </ul>
+                <div class="list-block-label">
+                  <p></p>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/template7" id="trainings">
+    <!-- Dynamic navbar for iOS theme -->
+    {{#if @global.ios}}
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left sliding">
+                <a href="#" class="link icon-only open-panel">
+                  <i class="fa fa-bars"></i>
+                  <span>Trainings</span>
+                </a>
+            </div>
+            <div class="center sliding">Trainings</div>
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="page" data-page="trainings">
+        <!-- Fixed navbar for Material theme -->
+        {{#if @global.material}}
+           <div class="navbar">
+            <div class="navbar-inner" data-page="index">
+              <div class="left">
+                <!--
+                  Left link contains only icon - additional "icon-only" class
+                  Additional "open-panel" class tells app to open panel when we click on this link
+                -->
+                <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
+              </div>
+              <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+              <div class="center sliding">Trainings</div>
+            </div>
+          </div>
+        {{/if}}
+
+        <div class="page-content">
+         <div class="content-block">
+         <form action="#" method="GET" id="submit_training_code">
+          <div class="list-block">
+            <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label"></div>
+                      <div class="item-input">
+                        <input type="text" name="training_code" placeholder="Enter Training Code">
+                        <input type="submit" class="button button-big button-fill answer-submit" value="Add Training" />
+                      </div>
+                    </div>
+                  </div>
+              </li>
+            </ul>
+          </div>
+        </form>
+
+         <div class="content-block-title">Your registered trainings:</div>
+          <div class="list-block media-list">
+
+              {{#each trainings}}
+                <a href="#" class="item-link item-content student_training_evaluation_link" style="padding-left: 0px !important;"
+                  data-item="{{this.id}}">
+                <div class="card" data-item="{{this.id}}">
+                  <div class="card-header" data-item="{{this.id}}">{{this.training.name}}</div>
+                  <div class="card-content" data-item="{{this.id}}">
+                    <div class="card-content-inner" data-item="{{this.id}}">{{this.training.description}}</div>
+                  </div>
+                </div>
+                </a>
+                <!--<h3><a href="#" class="student_training_evaluation_link" data-item="{{this.id}}">{{this.training.name}}</a></h3>
+                <a href="#" class="item-link item-content" style="padding-left: 0px !important;"
+                  data-item="{{@index}}"
+                  data-context="{{stringify this}}"
+                  data-template="student_training_evaluations"
+                >
+                <div class="card">
+                  <div class="card-header">{{this.training.name}}</div>
+                  <div class="card-content">
+                    <div class="card-content-inner">{{this.training.description}}</div>
+                  </div>
+                </div>
+                </a>-->
+
+              {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/template7" id="student_training_evaluations">
+    <!-- Dynamic navbar for iOS theme -->
+    {{#if @global.ios}}
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left sliding">
+          <a href="#" class="back link">
+            <i class="icon icon-back"></i>
+              <span>Assessments</span>
+          </a>
+        </div>
+        <div class="center sliding">assessments</div>
+      </div>
+    </div>
+    {{/if}}
+
+    <div class="page" data-page="details">
+        <!-- Fixed navbar for Material theme -->
+        {{#if @global.material}}
+        <div class="navbar">
+            <div class="navbar-inner">
+              <div class="left">
+                <a href="#" class="back link"><i class="icon icon-back"></i></a>
+              </div>
+              <div class="center">Assessments</div>
+              <div class="right">
+              </div>
+            </div>
+        </div>
+        {{/if}}
+
+        <div class="page-content">
+          <div class="list-block media-list">
+            <ul>
+              {{#each student_training_evaluations}}
+              <li>
+                {{#js_compare "this.status === 1"}}
+                <a href="#" class="link star take-assessment-button"  data-item="{{this.id}}" >
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-content-inner">
+                        <div class="track-name">{{this.evaluation.name}}
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                </a>
+                {{else}}
+                  <!--<div class="card">
+                    <div class="card-content">
+                      <div class="card-content-inner">
+                        <div class="track-name">{{this.evaluation.name}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>-->
+                {{/js_compare }}
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+    </div>
+  </script>
+
+
+  <script type="text/template7" id="radio_question">
+     <!-- Dynamic navbar for iOS theme -->
+    {{#if @global.ios}}
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left sliding">
+                <a href="#" class="link icon-only open-panel">
+                  <i class="fa fa-bars"></i>
+                  <span>Question</span>
+                </a>
+            </div>
+            <div class="center sliding">Trainings</div>
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="page" data-page="radio_question">
+        <!-- Fixed navbar for Material theme -->
+        {{#if @global.material}}
+           <div class="navbar">
+            <div class="navbar-inner" data-page="index">
+              <div class="left">
+                <!--
+                  Left link contains only icon - additional "icon-only" class
+                  Additional "open-panel" class tells app to open panel when we click on this link
+                -->
+                <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
+              </div>
+              <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+              <div class="center sliding">Question</div>
+            </div>
+          </div>
+        {{/if}}
+        <div class="page-content">
+        <div class="content-block">
+
+        <form action="#" method="GET" id="submit_radioanswer_{{question.id}}">
+
+          <h4>{{question.text}}</h4>
+          <div class="list-block">
+            <ul>
+              {{#each question.answer_choices}}
+                <li>
+                  <label class="label-radio item-content">
+                    <input type="radio" data-item="{{this.question_id}}" clas="radio_answer_{{this.question_id}}" name="radio_answer" id="radio_answer_{{this.question_id}}_{{this.id}}" value="{{this.id}}">
+                    <div class="item-media">
+                      <i class="icon icon-form-radio"></i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">{{this.text}}</div>
+                    </div>
+                  </label>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+          <div class="content-block">
+            <input type="hidden" id="student_training_evaluation_id" value="{{student_training_evaluation_id}}" />
+            <input type="hidden" id="question_id" value="{{question.id}}" />
+            <!--<input type="submit" onclick="submit_radioanswer(this)" class="button button-big button-fill answer-submit" value="Next" />-->
+            <input type='button' value='Next' onclick="submit_radioanswer(this)" />
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/template7" id="checkbox_question">
+     <!-- Dynamic navbar for iOS theme -->
+    {{#if @global.ios}}
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left sliding">
+                <a href="#" class="link icon-only open-panel">
+                  <i class="fa fa-bars"></i>
+                  <span>Question</span>
+                </a>
+            </div>
+            <div class="center sliding">Question</div>
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="page" data-page="checkbox_question">
+        <!-- Fixed navbar for Material theme -->
+        {{#if @global.material}}
+           <div class="navbar">
+            <div class="navbar-inner" data-page="index">
+              <div class="left">
+                <!--
+                  Left link contains only icon - additional "icon-only" class
+                  Additional "open-panel" class tells app to open panel when we click on this link
+                -->
+                <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
+              </div>
+              <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+              <div class="center sliding">Question</div>
+            </div>
+          </div>
+        {{/if}}
+        <div class="page-content">
+        <div class="content-block">
+
+        <form action="#" method="GET" id="submit_checkanswer">
+
+          <h4>{{question.text}}</h4>
+          <div class="list-block">
+            <ul>
+              {{#each question.answer_choices}}
+                <li>
+                  <label class="label-checkbox item-content">
+                    <input type="checkbox" data-item="{{this.question_id}}" id="check_answer" name="check_answer" value="{{this.id}}">
+                    <div class="item-media">
+                      <i class="icon icon-form-checkbox"></i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">{{this.text}}</div>
+                    </div>
+                  </label>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+          <div class="content-block">
+            <input type="hidden" id="student_training_evaluation_id" value="{{student_training_evaluation_id}}" />
+            <input type="hidden" id="question_id" value="{{question.id}}" />
+            <!--<input type="submit" class="button button-big button-fill answer-submit" value="Next" />-->
+            <input type='button' value='Next' onclick="submit_checkanswer(this)" />
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/template7" id="text_question">
+    <!-- Dynamic navbar for iOS theme -->
+    {{#if @global.ios}}
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left sliding">
+                <a href="#" class="link icon-only open-panel">
+                  <i class="fa fa-bars"></i>
+                  <span>Question</span>
+                </a>
+            </div>
+            <div class="center sliding">Question</div>
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="page" data-page="text_question">
+        <!-- Fixed navbar for Material theme -->
+        {{#if @global.material}}
+           <div class="navbar">
+            <div class="navbar-inner" data-page="index">
+              <div class="left">
+                <!--
+                  Left link contains only icon - additional "icon-only" class
+                  Additional "open-panel" class tells app to open panel when we click on this link
+                -->
+                <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
+              </div>
+              <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+              <div class="center sliding">Question</div>
+            </div>
+          </div>
+        {{/if}}
+        <div class="page-content">
+        <div class="content-block">
+
+        <form action="#" method="" id="submit_textanswer_{{question.id}}">
+
+          <h4>{{question.text}}</h4>
+          <div class="list-block">
+            <ul>
+                <li class="align-top">
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label"></div>
+                      <div class="item-input">
+                          <textarea id="text_answer_{{question.id}}" placeholder="Your answer here..."></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+            </ul>
+          </div>
+          <div class="content-block">
+            <input type="hidden" id="student_training_evaluation_id" value="{{student_training_evaluation_id}}" />
+            <input type="hidden" id="question_id" value="{{question.id}}" />
+            <!--<input type="submit"  onclick="submit_textanswer(this)" class="button button-big button-fill answer-submit" value="Next" />-->
+            <input type='button' value='Next' onclick="submit_textanswer(this)" />
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="lib/MSOpenTech/winstore-jscompat.js"></script>
+  <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+  <script type="text/javascript" src="js/init-styles.js"></script>
+  <script type="text/javascript" src="js/my-app.js"></script>
+</body>
+
+</html>
