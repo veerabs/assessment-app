@@ -156,11 +156,36 @@ body {
   width: 30%;
 }
 
-#login-button {
+.login-button {
   text-align: center;
   margin-bottom:15px;
 }
 
-#login-button img {
+.login-button img {
 width: 75%;
+}
+
+.login-list {
+  text-align: center;
+  width:100%;
+}
+
+.login-list li {
+  text-align: center;
+  width:100%;
+}
+
+.sign-up {
+  width:90%;
+  text-align: right;
+}
+.signup-link {
+color: #525252;
+text-align: right;
+font-size: 16px;
+}
+
+.menu-logo img {
+ margin-left:10px;
+  width:10%;
 }

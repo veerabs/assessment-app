@@ -26,7 +26,7 @@
   <title>Assessment Express</title>
 </head>
 
-<body class="theme-purple">
+<body class="theme-white">
   <!-- Status bar overlay for full screen mode (PhoneGap) -->
   <div class="statusbar-overlay"></div>
 
@@ -75,16 +75,16 @@
                 <ul>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class='item-title label username'><img src='img/user.png' /></div>
-                      <div class="item-input">
+                      <div class='username'><img src='img/user.png' /></div>
+                      <div class="username-input">
                         <input type="text" name="username" placeholder="Username"/>
                       </div>
                     </div>
                   </li>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class='item-title label password'><img src='img/lock.png' /></div>
-                      <div class="item-input">
+                      <div class='password'><img src='img/lock.png' /></div>
+                      <div class="password-input">
                         <input type="password" name="password" placeholder="Password"/>
                       </div>
                     </div>
@@ -92,14 +92,11 @@
                 </ul>
               </div>
               <div class="list-block">
-                <ul>
-                  <li><a href='#' onclick='login_click(this)' id='login-button' class="login-submit"  value="Sign In"><img src='img/login.png' /></a></li>
-                  <li style='text-align:center;'><input type="button"  onclick="register()" class="button button-big button-fill search-submit" value="Sign Up" /></li>
+                <ul class="login-list">
+                  <li ><a href='#' onclick='login_click(this)' class="login-button login-submit"  value="Sign In"><img src='img/login.png' /></a></li>
                 </ul>
-                <div class="list-block-label">
-                  <p></p>
-                </div>
               </div>
+              <div class="sign-up"><a href="#"  onclick="register()" class="signup-link">Sign up here.</a></div>
             </form>
             </div>
           </div>
@@ -116,10 +113,10 @@
         <div class="left sliding">
           <a href="#" class="back link">
             <i class="icon icon-back"></i>
-              <span>Login</span>
+              <span></span>
           </a>
         </div>
-        <div class="center sliding">Sign Up</div>
+        <div class="center sliding">Sign up</div>
       </div>
     </div>
     {{/if}}
@@ -130,7 +127,7 @@
         <div class="navbar">
             <div class="navbar-inner">
               <div class="left">
-                <a href="#" class="back link"><i class="icon icon-back">Login</i></a>
+                <a href="#" class="back link"><i class="icon icon-back"></i></a>
               </div>
               <div class="center">Sign Up</div>
               <div class="right">
@@ -141,54 +138,54 @@
 
         <div class="page-content">
          <div class="content-block">
-         <div class="content-block-title">Please fill in your details:</div>
+           <div class="content-block-title"><div class='logo'><img src='img/scb.png' /></div></div>
            <form action="#" method="POST" id="register">
               <div class="list-block">
                 <ul>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class="item-title label">Name</div>
-                      <div class="item-input">
-                        <input type="text" name="student[name]" placeholder="Your Name"/>
+                      <div class='name'><img src='img/user.png' /></div>
+                      <div class="name-input">
+                        <input type="text" name="student[name]" placeholder="Name"/>
                       </div>
                     </div>
                   </li>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class="item-title label">Username</div>
-                      <div class="item-input">
-                        <input type="text" id="username" name="student[username]" placeholder="Your Username"/>
+                      <div class='username'><img src='img/user.png' /></div>
+                      <div class="username-input">
+                        <input type="text" name="student[username]" placeholder="Username"/>
                       </div>
                     </div>
                   </li>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class="item-title label">Password</div>
-                      <div class="item-input">
-                        <input type="password" id="password" name="student[password]" placeholder="Your Password"/>
+                      <div class='password'><img src='img/lock.png' /></div>
+                      <div class="password-input">
+                        <input type="password" name="student[password]" placeholder="Password"/>
                       </div>
                     </div>
                   </li>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class="item-title label">Repeat Password</div>
-                      <div class="item-input">
-                        <input type="password" name="student[password_confirmation]" placeholder="Your Password"/>
+                      <div class='password'><img src='img/lock.png' /></div>
+                      <div class="password-input">
+                        <input type="password" name="student[password_confirmation]" placeholder="Retype Password"/>
                       </div>
                     </div>
                   </li>
 
                 </ul>
               </div>
+              <input type="hidden" name="student[email]" value="unused@scb.co.th" />
               <div class="list-block">
-                <ul>
-                <input type="hidden" name="student[email]" value="unused@scb.co.th" />
-                  <li><input type="button" onclick="signup(this);" class="button button-big button-fill register-submit"  value="Sign Up" /></li>
+                <ul class="login-list">
+                  <li>
+                    <a href='#' onclick='signup(this)' class="login-button login-submit" value="Sign Up"><img src='img/signup.png' /></a>
+                    </li>
                 </ul>
-                <div class="list-block-label">
-                  <p></p>
-                </div>
               </div>
+              <div class="signup-link"><a href="#" class="back link">Login here.</a></div>
             </form>
         </div>
       </div>
@@ -200,7 +197,8 @@
     {{#if @global.ios}}
     <div class="navbar">
         <div class="navbar-inner">
-            <div class="center sliding">Assessment Express</div>
+        <div class="left menu-logo"><img src="img/scb.png" /></div>
+        <div class="center sliding">Assessment Express</div>
         </div>
     </div>
     {{/if}}
@@ -210,6 +208,7 @@
         {{#if @global.material}}
            <div class="navbar">
             <div class="navbar-inner" data-page="index">
+        <div class="left menu-logo"><img src="img/scb.png" /></div>
               <div class="center sliding">Assessment Express</div>
             </div>
           </div>
@@ -275,7 +274,7 @@
     <div class="navbar">
       <div class="navbar-inner">
         <div class="left sliding">
-          <a href="#" class="back link">
+          <a href="#" class="back_to_training link">
             <i class="icon icon-back"></i>
               <span>Assessments</span>
           </a>
@@ -291,7 +290,7 @@
         <div class="navbar">
             <div class="navbar-inner">
               <div class="left">
-                <a href="#" class="back link"><i class="icon icon-back"></i></a>
+                <a href="#" class="back_to_training link"><i class="icon icon-back"></i></a>
               </div>
               <div class="center">Assessments</div>
               <div class="right">
@@ -307,24 +306,16 @@
               <li>
                 {{#js_compare "this.status === 1"}}
                 <a href="#" class="link star take-assessment-button"  data-item="{{this.id}}" >
-                  <div class="card">
-                    <div class="card-content">
-                      <div class="card-content-inner">
-                        <div class="track-name">{{this.evaluation.name}}
+                  <div class="card" data-item="{{this.id}}">
+                    <div class="card-content" data-item="{{this.id}}">
+                      <div class="card-content-inner" data-item="{{this.id}}">
+                        <div class="track-name"  data-item="{{this.id}}">{{this.evaluation.name}}
                         </div>
                       </div>
                     </div>
                 </div>
                 </a>
                 {{else}}
-                  <!--<div class="card">
-                    <div class="card-content">
-                      <div class="card-content-inner">
-                        <div class="track-name">{{this.evaluation.name}}
-                        </div>
-                      </div>
-                    </div>
-                  </div>-->
                 {{/js_compare }}
               </li>
               {{/each}}
@@ -341,7 +332,7 @@
     <div class="navbar">
       <div class="navbar-inner">
         <div class="left sliding">
-          <a href="#" class="back link">
+          <a href="#" class="link back_to_assessment">
             <i class="icon icon-back"></i>
               <span></span>
           </a>
@@ -357,7 +348,7 @@
         <div class="navbar">
             <div class="navbar-inner">
               <div class="left">
-                <a href="#" class="back link"><i class="icon icon-back"></i></a>
+                <a href="#" class="back_to_assessment link"><i class="icon icon-back"></i></a>
               </div>
               <div class="center">Assessment Express</div>
               <div class="right">
@@ -406,7 +397,7 @@
     <div class="navbar">
       <div class="navbar-inner">
         <div class="left sliding">
-          <a href="#" class="back link">
+          <a href="#" class="back_to_assessment link">
             <i class="icon icon-back"></i>
               <span></span>
           </a>
@@ -422,7 +413,7 @@
         <div class="navbar">
             <div class="navbar-inner">
               <div class="left">
-                <a href="#" class="back link"><i class="icon icon-back"></i></a>
+                <a href="#" class="back_to_assessment link"><i class="icon icon-back"></i></a>
               </div>
               <div class="center">Assessment Express</div>
               <div class="right">
@@ -470,7 +461,7 @@
     <div class="navbar">
       <div class="navbar-inner">
         <div class="left sliding">
-          <a href="#" class="back link">
+          <a href="#" class="back_to_assessment link">
             <i class="icon icon-back"></i>
               <span></span>
           </a>
@@ -486,7 +477,7 @@
         <div class="navbar">
             <div class="navbar-inner">
               <div class="left">
-                <a href="#" class="back link"><i class="icon icon-back"></i></a>
+                <a href="#" class="back_to_assessment link"><i class="icon icon-back"></i></a>
               </div>
               <div class="center">Assessment Express</div>
               <div class="right">

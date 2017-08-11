@@ -116,6 +116,22 @@ $$(document).on('click', '.student_training_evaluation_link', function evaluatio
     show_student_training_evaluations(e.target.dataset.item);
   });
 
+$$(document).on('click', '.back_to_assessment', function evaluationLink(e)
+  {
+    student_training_id=localStorage.getItem('student_training_id');
+    show_student_training_evaluations(student_training_id);
+  });
+
+$$(document).on('click', '.back_to_training', function evaluationLink(e)
+  {
+    getTrainings(null);
+  });
+
+$$(document).on('click', '.take-assessment-button', function evaluationLink(e)
+  {
+    student_training_evaluation_id = e.target.dataset.item;
+    goToNextQuestion(student_training_evaluation_id);
+  });
 
 $$(document).on('click', '.panel .training-link', function trainingLink() {
   getTrainings(null); });
@@ -324,12 +340,6 @@ function goToNextQuestion(student_training_evaluation_id)
   });
 }
 
-$$(document).on('pageInit', function() {
-    $$('.take-assessment-button').on('click', function () {
-      student_training_evaluation_id = this.dataset.item;
-      goToNextQuestion(student_training_evaluation_id);
-    });
-});
 
 function add_training(e) {
   var url = 'http://assessment.express/api/student_trainings';
