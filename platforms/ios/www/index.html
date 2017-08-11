@@ -181,7 +181,7 @@
                     </li>
                 </ul>
               </div>
-              <div class="signup-link"><a href="#" class="back link">Login here.</a></div>
+              <div class="signup-link"><a href="#" class="back link sign-up">Login here.</a></div>
             </form>
         </div>
       </div>
@@ -256,43 +256,39 @@
   </script>
 
   <script type="text/template7" id="student_training_evaluations">
-    <!-- Dynamic navbar for iOS theme -->
     {{#if @global.ios}}
     <div class="navbar">
-      <div class="navbar-inner">
-        <div class="left sliding">
-          <a href="#" class="back_to_training link">
-            <i class="icon icon-back"></i>
-              <span>Assessments</span>
-          </a>
+        <div class="navbar-inner">
+          <div class="left menu-logo">
+            <a href="#" class=" back_to_assessment"><img src="img/scb.png" /></a>
+          </div>
+          <div class="center sliding"></div>
         </div>
-        <div class="center sliding">assessments</div>
-      </div>
     </div>
     {{/if}}
 
-    <div class="page" data-page="details">
+    <div class="page" data-page="student_training_evaluations">
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
-        <div class="navbar">
-            <div class="navbar-inner">
-              <div class="left">
-                <a href="#" class="back_to_training link"><i class="icon icon-back"></i></a>
+           <div class="navbar">
+            <div class="navbar-inner" data-page="index">
+              <div class="left menu-logo">
+                <a href="#" class=" back_to_training"><img src="img/scb.png" /></a>
               </div>
-              <div class="center">Assessments</div>
-              <div class="right">
-              </div>
+              <div class="center sliding"></div>
             </div>
-        </div>
+          </div>
         {{/if}}
 
         <div class="page-content">
           <div class="list-block media-list">
-            <ul>
+            <div class='choose-assessment'>Select a set to take assessment:</div>
+            <ul class='assessments-list'>
+            <li ></li>
               {{#each student_training_evaluations}}
               <li>
                 {{#js_compare "this.status === 1"}}
-                <a href="#" class="link star take-assessment-button"  data-item="{{this.id}}" >
+                <a href="#" class="take-assessment-button"  data-item="{{this.id}}" >
                   <div class="card" data-item="{{this.id}}">
                     <div class="card-content" data-item="{{this.id}}">
                       <div class="card-content-inner" data-item="{{this.id}}">
@@ -317,32 +313,28 @@
      <!-- Dynamic navbar for iOS theme -->
     {{#if @global.ios}}
     <div class="navbar">
-      <div class="navbar-inner">
-        <div class="left sliding">
-          <a href="#" class="link back_to_assessment">
-            <i class="icon icon-back"></i>
-              <span></span>
-          </a>
+        <div class="navbar-inner">
+          <div class="left menu-logo">
+            <a href="#" class=" back_to_assessment"><img src="img/scb.png" /></a>
+          </div>
+          <div class="center sliding"></div>
         </div>
-        <div class="center sliding">Assessment Express</div>
-      </div>
     </div>
     {{/if}}
 
     <div class="page" data-page="radio_question">
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
-        <div class="navbar">
-            <div class="navbar-inner">
-              <div class="left">
-                <a href="#" class="back_to_assessment link"><i class="icon icon-back"></i></a>
+           <div class="navbar">
+            <div class="navbar-inner" data-page="index">
+              <div class="left menu-logo">
+                <a href="#" class=" back_to_assessment"><img src="img/scb.png" /></a>
               </div>
-              <div class="center">Assessment Express</div>
-              <div class="right">
-              </div>
+              <div class="center sliding"></div>
             </div>
-        </div>
+          </div>
         {{/if}}
+
         <div class="page-content">
         <div class="content-block">
 
@@ -354,23 +346,25 @@
               {{#each question.answer_choices}}
                 <li>
                   <label class="label-radio item-content">
-                    <input type="radio" data-item="{{this.question_id}}" clas="radio_answer_{{this.question_id}}" name="radio_answer" id="radio_answer_{{this.question_id}}_{{this.id}}" value="{{this.id}}">
+                    <input type="radio" data-item="{{this.question_id}}" clas="radio_answer_{{this.question_id}}" name="radio_answer" id="radio_answer_{{this.question_id}}_{{this.id}}" required value="{{this.id}}">
                     <div class="item-media">
                       <i class="icon icon-form-radio"></i>
                     </div>
                     <div class="item-inner">
-                      <div class="item-title">{{this.text}}</div>
+                      <div class="">{{this.text}}</div>
                     </div>
                   </label>
                 </li>
               {{/each}}
             </ul>
           </div>
-          <div class="content-block">
+          <div class="next-group">
             <input type="hidden" id="student_training_evaluation_id" value="{{student_training_evaluation_id}}" />
             <input type="hidden" id="question_id" value="{{question.id}}" />
             <!--<input type="submit" onclick="submit_radioanswer(this)" class="button button-big button-fill answer-submit" value="Next" />-->
-            <input type='button' value='Next' onclick="submit_radioanswer(this)" />
+            <a href='#' onclick='submit_radioanswer(this)' class="login-button login-submit"><img src='img/next.png' /></a>
+
+            <!--<input type='button' value='Next' onclick="submit_radioanswer(this)" />-->
           </div>
         </form>
         </div>
@@ -382,32 +376,29 @@
      <!-- Dynamic navbar for iOS theme -->
     {{#if @global.ios}}
     <div class="navbar">
-      <div class="navbar-inner">
-        <div class="left sliding">
-          <a href="#" class="back_to_assessment link">
-            <i class="icon icon-back"></i>
-              <span></span>
-          </a>
+        <div class="navbar-inner">
+          <div class="left menu-logo">
+            <a href="#" class=" back_to_assessment"><img src="img/scb.png" /></a>
+          </div>
+          <div class="center sliding"></div>
         </div>
-        <div class="center sliding">Assessment Express</div>
-      </div>
     </div>
     {{/if}}
 
     <div class="page" data-page="checkbox_question">
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
-        <div class="navbar">
-            <div class="navbar-inner">
-              <div class="left">
-                <a href="#" class="back_to_assessment link"><i class="icon icon-back"></i></a>
+           <div class="navbar">
+            <div class="navbar-inner" data-page="index">
+              <div class="left menu-logo">
+                <a href="#" class=" back_to_assessment"><img src="img/scb.png" /></a>
               </div>
-              <div class="center">Assessment Express</div>
-              <div class="right">
-              </div>
+              <div class="center sliding"></div>
             </div>
-        </div>
-        {{/if}}        <div class="page-content">
+          </div>
+        {{/if}}
+
+        <div class="page-content">
         <div class="content-block">
 
         <form action="#" method="GET" id="submit_checkanswer">
@@ -418,23 +409,24 @@
               {{#each question.answer_choices}}
                 <li>
                   <label class="label-checkbox item-content">
-                    <input type="checkbox" data-item="{{this.question_id}}" id="check_answer" name="check_answer" value="{{this.id}}">
+                    <input type="checkbox" data-item="{{this.question_id}}" required id="check_answer" name="check_answer" value="{{this.id}}">
                     <div class="item-media">
                       <i class="icon icon-form-checkbox"></i>
                     </div>
                     <div class="item-inner">
-                      <div class="item-title">{{this.text}}</div>
+                      <div class="">{{this.text}}</div>
                     </div>
                   </label>
                 </li>
               {{/each}}
             </ul>
           </div>
-          <div class="content-block">
+          <div class="next-group">
             <input type="hidden" id="student_training_evaluation_id" value="{{student_training_evaluation_id}}" />
             <input type="hidden" id="question_id" value="{{question.id}}" />
             <!--<input type="submit" class="button button-big button-fill answer-submit" value="Next" />-->
-            <input type='button' value='Next' onclick="submit_checkanswer(this)" />
+            <a href='#' onclick='submit_checkanswer(this)' class="login-button login-submit"><img src='img/next.png' /></a>
+            <!--<input type='button' value='Next' onclick="submit_checkanswer(this)" />-->
           </div>
         </form>
         </div>
@@ -446,31 +438,26 @@
     <!-- Dynamic navbar for iOS theme -->
     {{#if @global.ios}}
     <div class="navbar">
-      <div class="navbar-inner">
-        <div class="left sliding">
-          <a href="#" class="back_to_assessment link">
-            <i class="icon icon-back"></i>
-              <span></span>
-          </a>
+        <div class="navbar-inner">
+          <div class="left menu-logo">
+            <a href="#" class=" back_to_assessment"><img src="img/scb.png" /></a>
+          </div>
+          <div class="center sliding"></div>
         </div>
-        <div class="center sliding">Assessment Express</div>
-      </div>
     </div>
     {{/if}}
 
     <div class="page" data-page="text_question">
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
-        <div class="navbar">
-            <div class="navbar-inner">
-              <div class="left">
-                <a href="#" class="back_to_assessment link"><i class="icon icon-back"></i></a>
+           <div class="navbar">
+            <div class="navbar-inner" data-page="index">
+              <div class="left menu-logo">
+                <a href="#" class=" back_to_assessment"><img src="img/scb.png" /></a>
               </div>
-              <div class="center">Assessment Express</div>
-              <div class="right">
-              </div>
+              <div class="center sliding"></div>
             </div>
-        </div>
+          </div>
         {{/if}}
         <div class="page-content">
         <div class="content-block">
@@ -492,11 +479,12 @@
                 </li>
             </ul>
           </div>
-          <div class="content-block">
+          <div class="next-group">
             <input type="hidden" id="student_training_evaluation_id" value="{{student_training_evaluation_id}}" />
             <input type="hidden" id="question_id" value="{{question.id}}" />
             <!--<input type="submit"  onclick="submit_textanswer(this)" class="button button-big button-fill answer-submit" value="Next" />-->
-            <input type='button' value='Next' onclick="submit_textanswer(this)" />
+            <a href='#' onclick='submit_textanswer(this)' class="login-button login-submit"><img src='img/next.png' /></a>
+            <!--<input type='button' value='Next' onclick="submit_textanswer(this)" />-->
           </div>
         </form>
         </div>

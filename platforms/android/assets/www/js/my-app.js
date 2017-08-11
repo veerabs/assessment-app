@@ -432,27 +432,30 @@ function submit_radioanswer(e) {
   var question_id = localStorage.getItem('question_id');
   var formData = myApp.formToJSON('#submit_radioanswer_'+ question_id);
   var answer_choice_id = formData.radio_answer;
-  var student_training_evaluation_id = localStorage.getItem('student_training_evaluation_id');
-  var url = 'http://assessment.express/api/student_training_evaluation';
-  var access_token = localStorage.getItem('access_token');
-  myApp.showPreloader('Answering question...');
-  $$.ajax({
-    type: 'POST',
-    dataType: 'json',
-    data : {  access_token : access_token,
-              student_training_evaluation_id : student_training_evaluation_id,
-              question_id : question_id,
-              answer_choice_id : answer_choice_id },
-    processData: true,
-    url: url,
-    success: goToNextQuestion,
-    error: function answerError(xhr, err) {
-      myApp.hidePreloader();
-      myApp.alert('An error has occurred', 'Submit Answer Error');
-      console.error("Error on ajax call: " + err);
-      console.log(JSON.stringify(xhr));
-    }
-  });
+   if(!isNaN(answer_choice_id))
+   {
+      var student_training_evaluation_id = localStorage.getItem('student_training_evaluation_id');
+    var url = 'http://assessment.express/api/student_training_evaluation';
+    var access_token = localStorage.getItem('access_token');
+    myApp.showPreloader('Answering question...');
+    $$.ajax({
+      type: 'POST',
+      dataType: 'json',
+      data : {  access_token : access_token,
+                student_training_evaluation_id : student_training_evaluation_id,
+                question_id : question_id,
+                answer_choice_id : answer_choice_id },
+      processData: true,
+      url: url,
+      success: goToNextQuestion,
+      error: function answerError(xhr, err) {
+        myApp.hidePreloader();
+        myApp.alert('An error has occurred', 'Submit Answer Error');
+        console.error("Error on ajax call: " + err);
+        console.log(JSON.stringify(xhr));
+      }
+    });
+   }
 }
 
 function submit_checkanswer(e) {

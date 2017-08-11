@@ -68,7 +68,9 @@ body {
 }
 
 .card-content .track-name {
-  font-weight: bold;
+  /*font-weight: bold;*/
+  color: black;
+  font-size: 22px;
 }
 
 .card-content .album-title {
@@ -178,7 +180,7 @@ width: 75%;
 .sign-up {
   width:90%;
   text-align: right;
-  padding-bottom:20px;
+  padding-bottom:40px;
 }
 
 .signup-link {
@@ -254,3 +256,24 @@ font-size: 16px;
   margin-bottom: 30px !important;
 }
 
+.take-assessment-button {
+  color: black;
+  font-size: 22px;
+}
+
+.assessments-list {
+  width: 90%;
+  margin-left: 5% !important;
+}
+
+.choose-assessment {
+  font-size: 20px;
+  width: 90%;
+  margin-left: 5%;
+  margin-bottom: 20px;
+}
+
+.next-group {
+  width: 100%;
+  text-align: center;
+}
