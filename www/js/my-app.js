@@ -17,20 +17,6 @@ function pad2(number) {
   return number;
 }
 
-// Now the actual helper to turn ms to [hh:]mm:ss
-function durationFromMsHelper(ms) {
-  if (typeof ms != 'number') {
-    return '';
-  }
-  var x = ms / 1000;
-  var seconds = pad2(Math.floor(x % 60));
-  x /= 60;
-  var minutes = pad2(Math.floor(x % 60));
-  x /= 60;
-  var hours = Math.floor(x % 24);
-  hours = hours ? pad2(hours) + ':' : '';
-  return hours + minutes + ':' + seconds;
-}
 
 // A stringify helper
 // Need to replace any double quotes in the data with the HTML char
@@ -41,7 +27,6 @@ function stringifyHelper(context) {
 }
 
 // Finally, register the helpers with Template7
-Template7.registerHelper('durationFromMs', durationFromMsHelper);
 Template7.registerHelper('stringify', stringifyHelper);
 
 // If we need to use custom DOM library, let's save it to $$ variable:
@@ -76,6 +61,9 @@ var mainView = myApp.addView('.view-main', {
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function deviceIsReady() {
   console.log('Device is ready!');
+  document.addEventListener("backbutton", function (e) {
+        e.preventDefault();
+    }, false );
 });
 
 function register()
