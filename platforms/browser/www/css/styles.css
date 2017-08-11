@@ -178,7 +178,9 @@ width: 75%;
 .sign-up {
   width:90%;
   text-align: right;
+  padding-bottom:20px;
 }
+
 .signup-link {
 color: #525252;
 text-align: right;
@@ -186,8 +188,9 @@ font-size: 16px;
 }
 
 .menu-logo img {
- margin-left:10px;
-  width:20%;
+  margin-left:10px;
+  margin-top: 5px;
+  width:30%;
 }
 
 .add-training-list {
@@ -223,7 +226,8 @@ font-size: 16px;
 }
 
 .training-code {
-  width: 50% !important;
+  width: 100% !important;
+  margin-bottom: 20px !important;
 }
 
 .navbar
