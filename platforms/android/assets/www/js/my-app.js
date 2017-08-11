@@ -474,6 +474,13 @@ function submit_checkanswer(e) {
   //return false;
 }
 
+function login_click(e) {
+  var formData = myApp.formToJSON('#login');
+  var username = formData.username;
+  var password = formData.password;
+  login(username, password);
+}
+
 $$(document).on('submit', '#login', function login_with_form(e) {
   var formData = myApp.formToJSON('#login');
   var username = formData.username;

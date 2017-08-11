@@ -61,13 +61,7 @@
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main">
       <!-- Top Navbar-->
-      <div class="navbar">
-        <div class="navbar-inner" data-page="index">
 
-          <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-          <div class="center sliding">Assessment Express</div>
-        </div>
-      </div>
       <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
       <div class="pages navbar-through toolbar-through">
         <!-- Page, "data-page" contains page name -->
@@ -99,8 +93,8 @@
               </div>
               <div class="list-block">
                 <ul>
-                  <li><input type="submit" class="login-submit"  value="Sign In" /></li>
-                  <li><input type="button"  onclick="register()" class="button button-big button-fill search-submit" value="Sign Up" /></li>
+                  <li><a href='#' onclick='login_click(this)' id='login-button' class="login-submit"  value="Sign In"><img src='img/login.png' /></a></li>
+                  <li style='text-align:center;'><input type="button"  onclick="register()" class="button button-big button-fill search-submit" value="Sign Up" /></li>
                 </ul>
                 <div class="list-block-label">
                   <p></p>
