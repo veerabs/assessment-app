@@ -26,7 +26,7 @@
   <title>Assessment Express</title>
 </head>
 
-<body class="theme-white">
+<body class="theme-none">
   <!-- Status bar overlay for full screen mode (PhoneGap) -->
   <div class="statusbar-overlay"></div>
 
@@ -197,8 +197,8 @@
     {{#if @global.ios}}
     <div class="navbar">
         <div class="navbar-inner">
-        <div class="left menu-logo"><img src="img/scb.png" /></div>
-        <div class="center sliding">Assessment Express</div>
+          <div class="left menu-logo"><img src="img/scb.png" /></div>
+          <div class="center sliding"></div>
         </div>
     </div>
     {{/if}}
@@ -208,8 +208,8 @@
         {{#if @global.material}}
            <div class="navbar">
             <div class="navbar-inner" data-page="index">
-        <div class="left menu-logo"><img src="img/scb.png" /></div>
-              <div class="center sliding">Assessment Express</div>
+              <div class="left menu-logo"><img src="img/scb.png" /></div>
+              <div class="center sliding"></div>
             </div>
           </div>
         {{/if}}
@@ -218,50 +218,41 @@
          <div class="content-block">
          <form action="#" method="GET" id="submit_training_code">
           <div class="list-block">
-            <ul>
+            <ul class='add-training-list'>
+                <li><span class='add-training-title'>Join new training.</span></li>
+                <li><span class='enter-code'>Please enter the training code.</span></li>
                 <li>
                   <div class="item-content">
                     <div class="item-inner">
                       <div class="item-title label"></div>
-                      <div class="item-input">
-                        <input type="text" name="training_code" placeholder="Enter Training Code">
-                        <input type="submit" class="button button-big button-fill answer-submit" value="Add Training" />
-                      </div>
+                      <div class="item-input" style='text-align:center;'>
+                        <input type="text" class='training-code' name="training_code" placeholder="Training Code">
+                       </div>
                     </div>
                   </div>
+                   <a href='#' onclick='add_training(this)' class="login-button login-submit"><img src='img/joinnow.png' /></a>
+
               </li>
             </ul>
           </div>
         </form>
-
-         <div class="content-block-title">Your registered trainings:</div>
+        <div class="">
           <div class="list-block media-list">
-
+            <ul>
               {{#each trainings}}
-                <a href="#" class="item-link item-content student_training_evaluation_link" style="padding-left: 0px !important;"
-                  data-item="{{this.id}}">
-                <div class="card" data-item="{{this.id}}">
-                  <div class="card-header" data-item="{{this.id}}">{{this.training.name}}</div>
-                  <div class="card-content" data-item="{{this.id}}">
-                    <div class="card-content-inner" data-item="{{this.id}}">{{this.training.description}}</div>
+                <li>
+                  <a href="#" class="item-link item-content student_training_evaluation_link" style="padding-left: 0px !important;"
+                    data-item="{{this.id}}">
+                  <div class="card my-card" data-item="{{this.id}}">
+                    <div class="card-header my-card bold" data-item="{{this.id}}">{{this.training.name}}</div>
+                    <div class="card-content" data-item="{{this.id}}">
+                      <div class="card-content-inner left" data-item="{{this.id}}">{{this.training.description}}</div>
+                    </div>
                   </div>
-                </div>
-                </a>
-                <!--<h3><a href="#" class="student_training_evaluation_link" data-item="{{this.id}}">{{this.training.name}}</a></h3>
-                <a href="#" class="item-link item-content" style="padding-left: 0px !important;"
-                  data-item="{{@index}}"
-                  data-context="{{stringify this}}"
-                  data-template="student_training_evaluations"
-                >
-                <div class="card">
-                  <div class="card-header">{{this.training.name}}</div>
-                  <div class="card-content">
-                    <div class="card-content-inner">{{this.training.description}}</div>
-                  </div>
-                </div>
-                </a>-->
-
+                  </a>
+                </li>
               {{/each}}
+            </ul>
           </div>
         </div>
       </div>

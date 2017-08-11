@@ -343,7 +343,7 @@ function goToNextQuestion(student_training_evaluation_id)
 
 function add_training(e) {
   var url = 'http://assessment.express/api/student_trainings';
-  e.preventDefault();
+  //e.preventDefault();
   var formData = myApp.formToJSON('#submit_training_code');
   var training_code = formData.training_code;
   var access_token = localStorage.getItem('access_token');
@@ -499,5 +499,5 @@ $$(document).on('submit', '#login', function login_with_form(e) {
 });
 //$$(document).on('submit', '#submit_checkanswer', submit_checkanswer);
 //$$(document).on('submit', '#submit_textanswer', submit_textanswer);
-$$(document).on('submit', '#submit_training_code', add_training);
+//$$(document).on('submit', '#submit_training_code', add_training);
 

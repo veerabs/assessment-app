@@ -187,5 +187,66 @@ font-size: 16px;
 
 .menu-logo img {
  margin-left:10px;
-  width:10%;
+  width:20%;
 }
+
+.add-training-list {
+    margin-top:65px !important;
+  margin-bottom: 15px  !important;
+  width: 100%;
+  text-align:center;
+  border: none;
+}
+
+.add-training-list li {
+  width: 100%;
+  text-align:center;
+  margin-top: 10px;
+
+}
+
+
+.add-training-title, .enter-code {
+  font-family: Roboto,Noto,Helvetica,Arial,sans-serif;
+  text-align:center;
+}
+
+.add-training-title {
+
+  font-size: 26px;
+}
+
+.enter-code {
+  font-size: 16px;
+  margin-bottom: 15px;
+
+}
+
+.training-code {
+  width: 50% !important;
+}
+
+.navbar
+{
+  background: white;
+
+}
+
+.center {
+  text-align: center;
+}
+.media-list {
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.my-card {
+  width: 100%;
+}
+
+.card {
+  margin-bottom: 30px !important;
+}
+
