@@ -75,23 +75,23 @@
           <!-- Scrollable page content -->
           <div class="page-content">
           <div class="content-block">
-             <div class="content-block-title"><p>Welcome to your assessment!</p></div>
+             <div class="content-block-title"><div class='logo'><img src='img/scb.png' /></div></div>
              <form action="#" method="GET" id="login">
               <div class="list-block">
                 <ul>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class="item-title label">Username</div>
+                      <div class='item-title label username'><img src='img/user.png' /></div>
                       <div class="item-input">
-                        <input type="text" name="username" placeholder="Your username"/>
+                        <input type="text" name="username" placeholder="Username"/>
                       </div>
                     </div>
                   </li>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class="item-title label">Password</div>
+                      <div class='item-title label password'><img src='img/lock.png' /></div>
                       <div class="item-input">
-                        <input type="password" name="password" placeholder="Your password"/>
+                        <input type="password" name="password" placeholder="Password"/>
                       </div>
                     </div>
                   </li>
@@ -99,7 +99,7 @@
               </div>
               <div class="list-block">
                 <ul>
-                  <li><input type="submit" class="button button-big button-fill search-submit"  value="Sign In" /></li>
+                  <li><input type="submit" class="login-submit"  value="Sign In" /></li>
                   <li><input type="button"  onclick="register()" class="button button-big button-fill search-submit" value="Sign Up" /></li>
                 </ul>
                 <div class="list-block-label">
@@ -116,8 +116,34 @@
 
 <script type="text/template7" id="register">
     <!-- Dynamic navbar for iOS theme -->
+    {{#if @global.ios}}
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left sliding">
+          <a href="#" class="back link">
+            <i class="icon icon-back"></i>
+              <span>Login</span>
+          </a>
+        </div>
+        <div class="center sliding">Sign Up</div>
+      </div>
+    </div>
+    {{/if}}
 
     <div class="page" data-page="register">
+        <!-- Fixed navbar for Material theme -->
+        {{#if @global.material}}
+        <div class="navbar">
+            <div class="navbar-inner">
+              <div class="left">
+                <a href="#" class="back link"><i class="icon icon-back">Login</i></a>
+              </div>
+              <div class="center">Sign Up</div>
+              <div class="right">
+              </div>
+            </div>
+        </div>
+        {{/if}}
 
         <div class="page-content">
          <div class="content-block">
@@ -163,7 +189,7 @@
               <div class="list-block">
                 <ul>
                 <input type="hidden" name="student[email]" value="unused@scb.co.th" />
-                  <li><input type="button" onclick="signup(this);" class="button button-big button-fill register-submit"  value="Sign In" /></li>
+                  <li><input type="button" onclick="signup(this);" class="button button-big button-fill register-submit"  value="Sign Up" /></li>
                 </ul>
                 <div class="list-block-label">
                   <p></p>
@@ -180,13 +206,7 @@
     {{#if @global.ios}}
     <div class="navbar">
         <div class="navbar-inner">
-            <div class="left sliding">
-                <a href="#" class="link icon-only open-panel">
-                  <i class="fa fa-bars"></i>
-                  <span>Trainings</span>
-                </a>
-            </div>
-            <div class="center sliding">Trainings</div>
+            <div class="center sliding">Assessment Express</div>
         </div>
     </div>
     {{/if}}
@@ -196,15 +216,7 @@
         {{#if @global.material}}
            <div class="navbar">
             <div class="navbar-inner" data-page="index">
-              <div class="left">
-                <!--
-                  Left link contains only icon - additional "icon-only" class
-                  Additional "open-panel" class tells app to open panel when we click on this link
-                -->
-                <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
-              </div>
-              <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-              <div class="center sliding">Trainings</div>
+              <div class="center sliding">Assessment Express</div>
             </div>
           </div>
         {{/if}}
@@ -333,34 +345,31 @@
      <!-- Dynamic navbar for iOS theme -->
     {{#if @global.ios}}
     <div class="navbar">
-        <div class="navbar-inner">
-            <div class="left sliding">
-                <a href="#" class="link icon-only open-panel">
-                  <i class="fa fa-bars"></i>
-                  <span>Question</span>
-                </a>
-            </div>
-            <div class="center sliding">Trainings</div>
+      <div class="navbar-inner">
+        <div class="left sliding">
+          <a href="#" class="back link">
+            <i class="icon icon-back"></i>
+              <span></span>
+          </a>
         </div>
+        <div class="center sliding">Assessment Express</div>
+      </div>
     </div>
     {{/if}}
 
     <div class="page" data-page="radio_question">
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
-           <div class="navbar">
-            <div class="navbar-inner" data-page="index">
+        <div class="navbar">
+            <div class="navbar-inner">
               <div class="left">
-                <!--
-                  Left link contains only icon - additional "icon-only" class
-                  Additional "open-panel" class tells app to open panel when we click on this link
-                -->
-                <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
+                <a href="#" class="back link"><i class="icon icon-back"></i></a>
               </div>
-              <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-              <div class="center sliding">Question</div>
+              <div class="center">Assessment Express</div>
+              <div class="right">
+              </div>
             </div>
-          </div>
+        </div>
         {{/if}}
         <div class="page-content">
         <div class="content-block">
@@ -401,36 +410,32 @@
      <!-- Dynamic navbar for iOS theme -->
     {{#if @global.ios}}
     <div class="navbar">
-        <div class="navbar-inner">
-            <div class="left sliding">
-                <a href="#" class="link icon-only open-panel">
-                  <i class="fa fa-bars"></i>
-                  <span>Question</span>
-                </a>
-            </div>
-            <div class="center sliding">Question</div>
+      <div class="navbar-inner">
+        <div class="left sliding">
+          <a href="#" class="back link">
+            <i class="icon icon-back"></i>
+              <span></span>
+          </a>
         </div>
+        <div class="center sliding">Assessment Express</div>
+      </div>
     </div>
     {{/if}}
 
     <div class="page" data-page="checkbox_question">
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
-           <div class="navbar">
-            <div class="navbar-inner" data-page="index">
+        <div class="navbar">
+            <div class="navbar-inner">
               <div class="left">
-                <!--
-                  Left link contains only icon - additional "icon-only" class
-                  Additional "open-panel" class tells app to open panel when we click on this link
-                -->
-                <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
+                <a href="#" class="back link"><i class="icon icon-back"></i></a>
               </div>
-              <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-              <div class="center sliding">Question</div>
+              <div class="center">Assessment Express</div>
+              <div class="right">
+              </div>
             </div>
-          </div>
-        {{/if}}
-        <div class="page-content">
+        </div>
+        {{/if}}        <div class="page-content">
         <div class="content-block">
 
         <form action="#" method="GET" id="submit_checkanswer">
@@ -469,34 +474,31 @@
     <!-- Dynamic navbar for iOS theme -->
     {{#if @global.ios}}
     <div class="navbar">
-        <div class="navbar-inner">
-            <div class="left sliding">
-                <a href="#" class="link icon-only open-panel">
-                  <i class="fa fa-bars"></i>
-                  <span>Question</span>
-                </a>
-            </div>
-            <div class="center sliding">Question</div>
+      <div class="navbar-inner">
+        <div class="left sliding">
+          <a href="#" class="back link">
+            <i class="icon icon-back"></i>
+              <span></span>
+          </a>
         </div>
+        <div class="center sliding">Assessment Express</div>
+      </div>
     </div>
     {{/if}}
 
     <div class="page" data-page="text_question">
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
-           <div class="navbar">
-            <div class="navbar-inner" data-page="index">
+        <div class="navbar">
+            <div class="navbar-inner">
               <div class="left">
-                <!--
-                  Left link contains only icon - additional "icon-only" class
-                  Additional "open-panel" class tells app to open panel when we click on this link
-                -->
-                <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
+                <a href="#" class="back link"><i class="icon icon-back"></i></a>
               </div>
-              <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-              <div class="center sliding">Question</div>
+              <div class="center">Assessment Express</div>
+              <div class="right">
+              </div>
             </div>
-          </div>
+        </div>
         {{/if}}
         <div class="page-content">
         <div class="content-block">
