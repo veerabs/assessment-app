@@ -73,7 +73,7 @@ function register()
   });
 }
 
-function show_student_training_evaluations(student_training_id, reloadPrevious) {
+function show_student_training_evaluations(student_training_id, reload, reloadPrevious) {
   // If not using card as link, use this instead of the below
   //student_training_id = e.currentTarget.activeElement.dataset.item;
 
@@ -99,7 +99,8 @@ function show_student_training_evaluations(student_training_id, reloadPrevious) 
         context: {
           student_training_evaluations: resp,
         },
-        reloadPrevious: reloadPrevious
+        reload: reload,
+        reloadPrevious: false
       });
     },
     error: function assesssmentsError(xhr, err) {
@@ -114,19 +115,19 @@ function show_student_training_evaluations(student_training_id, reloadPrevious) 
 $$(document).on('click', '.refresh', function evaluationLink(e)
   {
     student_training_id=localStorage.getItem('student_training_id');
-    show_student_training_evaluations(student_training_id, true);
+    show_student_training_evaluations(student_training_id, true, false);
   });
 
 
 $$(document).on('click', '.student_training_evaluation_link', function evaluationLink(e)
   {
-    show_student_training_evaluations(e.target.dataset.item, false);
+    show_student_training_evaluations(e.target.dataset.item, false, false);
   });
 
 $$(document).on('click', '.back_to_assessment', function evaluationLink(e)
   {
     student_training_id=localStorage.getItem('student_training_id');
-    show_student_training_evaluations(student_training_id, false);
+    show_student_training_evaluations(student_training_id, false, false);
   });
 
 $$(document).on('click', '.back_to_training', function evaluationLink(e)
@@ -283,9 +284,15 @@ function goToNextQuestion(student_training_evaluation_id)
 {
   myApp.hidePreloader();
   if(isNaN(student_training_evaluation_id))
-    student_training_evaluation_id=localStorage.getItem('student_training_evaluation_id');
+   {
+     student_training_evaluation_id=localStorage.getItem('student_training_evaluation_id');
+     reload = true;
+   }
   else
+  {
     localStorage.setItem('student_training_evaluation_id',student_training_evaluation_id);
+    reload = false;
+  }
   //app.formToJSON('#query-form');
   access_token = localStorage.getItem('access_token');
   var url = 'http://assessment.express/api/student_training_evaluation?access_token=' + access_token + '&student_training_evaluation_id='+student_training_evaluation_id;
@@ -322,14 +329,14 @@ function goToNextQuestion(student_training_evaluation_id)
               question: resp,
               student_training_evaluation_id: student_training_evaluation_id,
             },
-            pushState: false
+            reload: reload
         });
       }
       else
       {
         localStorage.setItem('student_training_evaluation_id',null);
         student_training_id=localStorage.getItem('student_training_id');
-        show_student_training_evaluations(student_training_id, true);
+        show_student_training_evaluations(student_training_id, true, true);
 
         /*student_training_evaluations = JSON.parse(resp.student_training_evaluations);
         myApp.hidePreloader();
@@ -389,6 +396,7 @@ function add_training(e) {
                 context: {
                   trainings: resp,
                 },
+                reload: true
               });
             },
             error: function addTrainingError(xhr, err) {

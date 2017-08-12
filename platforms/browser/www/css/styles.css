@@ -278,7 +278,7 @@ font-size: 16px;
   text-align: center;
 }
 
-#index-page .page-content {
+#index-page .page-content, #register-page .page-content {
   margin-top: 0;
 }
 
@@ -291,4 +291,9 @@ font-size: 16px;
   height: 80px;
   background: url('../img/scb.png') center no-repeat;
   background-size: 60px 60px;
+}
+
+.login-button-area {
+  width:100%;
+  text-align:center;
 }
