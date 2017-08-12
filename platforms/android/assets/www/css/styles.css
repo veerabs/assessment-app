@@ -11,7 +11,7 @@ body {
 }
 
 .page-content {
-  margin-top: 40px;
+  margin-top: 80px;
   touch-action: pan-y;
   -ms-touch-action: pan-y;
 }
@@ -276,4 +276,19 @@ font-size: 16px;
 .next-group {
   width: 100%;
   text-align: center;
+}
+
+#index-page .page-content {
+  margin-top: 0;
+}
+
+.center {
+  text-align: center !important;
+}
+
+
+.navbar {
+  height: 80px;
+  background: url('../img/scb.png') center no-repeat;
+  background-size: 60px 60px;
 }

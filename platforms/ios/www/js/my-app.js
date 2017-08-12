@@ -61,9 +61,9 @@ var mainView = myApp.addView('.view-main', {
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function deviceIsReady() {
   console.log('Device is ready!');
-  document.addEventListener("backbutton", function (e) {
-        e.preventDefault();
-    }, false );
+  //document.addEventListener("backbutton", function (e) {
+  //      e.preventDefault();
+   // }, false );
 });
 
 function register()
@@ -73,7 +73,7 @@ function register()
   });
 }
 
-function show_student_training_evaluations(student_training_id) {
+function show_student_training_evaluations(student_training_id, reloadPrevious) {
   // If not using card as link, use this instead of the below
   //student_training_id = e.currentTarget.activeElement.dataset.item;
 
@@ -99,6 +99,7 @@ function show_student_training_evaluations(student_training_id) {
         context: {
           student_training_evaluations: resp,
         },
+        reloadPrevious: reloadPrevious
       });
     },
     error: function assesssmentsError(xhr, err) {
@@ -110,16 +111,22 @@ function show_student_training_evaluations(student_training_id) {
   });
 }
 
+$$(document).on('click', '.refresh', function evaluationLink(e)
+  {
+    student_training_id=localStorage.getItem('student_training_id');
+    show_student_training_evaluations(student_training_id, true);
+  });
+
 
 $$(document).on('click', '.student_training_evaluation_link', function evaluationLink(e)
   {
-    show_student_training_evaluations(e.target.dataset.item);
+    show_student_training_evaluations(e.target.dataset.item, false);
   });
 
 $$(document).on('click', '.back_to_assessment', function evaluationLink(e)
   {
     student_training_id=localStorage.getItem('student_training_id');
-    show_student_training_evaluations(student_training_id);
+    show_student_training_evaluations(student_training_id, false);
   });
 
 $$(document).on('click', '.back_to_training', function evaluationLink(e)
@@ -222,6 +229,8 @@ function login(username, password) {
               context: {
                 trainings: resp,
               },
+              reload: true,
+              pushState: false
             });
           },
           error: function trainingsError(xhr, err) {
@@ -313,13 +322,14 @@ function goToNextQuestion(student_training_evaluation_id)
               question: resp,
               student_training_evaluation_id: student_training_evaluation_id,
             },
+            pushState: false
         });
       }
       else
       {
         localStorage.setItem('student_training_evaluation_id',null);
         student_training_id=localStorage.getItem('student_training_id');
-        show_student_training_evaluations(student_training_id);
+        show_student_training_evaluations(student_training_id, true);
 
         /*student_training_evaluations = JSON.parse(resp.student_training_evaluations);
         myApp.hidePreloader();
