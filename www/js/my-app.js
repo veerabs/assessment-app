@@ -61,9 +61,11 @@ var mainView = myApp.addView('.view-main', {
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function deviceIsReady() {
   console.log('Device is ready!');
-  //document.addEventListener("backbutton", function (e) {
-  //      e.preventDefault();
-   // }, false );
+  access_token=localStorage.getItem('access_token');
+  if(access_token != null)
+  {
+    getTrainings(null);
+  }
 });
 
 function register()
@@ -275,7 +277,13 @@ function getTrainings(e) {
       myApp.hidePreloader();
       myApp.alert('An error has occurred', 'Get Trainings Error');
       console.error("Error on ajax call: " + err);
+
       console.log(JSON.stringify(xhr));
+      loginlocalStorage.setItem('access_token',null);
+      mainView.router.load({
+        url: '/',
+
+      });
     }
   });
 }
