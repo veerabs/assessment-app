@@ -60,7 +60,7 @@ var mainView = myApp.addView('.view-main', {
 
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function deviceIsReady() {
-  console.log('Device is ready!');
+  //console.log('Device is ready!');
   access_token=localStorage.getItem('access_token');
   if(access_token != null)
   {
@@ -109,7 +109,7 @@ function show_student_training_evaluations(student_training_id, reload, reloadPr
       myApp.hidePreloader();
       myApp.alert('An error has occurred', 'Get Assessments Error');
       console.error("Error on ajax call: " + err);
-      console.log(JSON.stringify(xhr));
+      //console.log(JSON.stringify(xhr));
     }
   });
 }
@@ -193,7 +193,7 @@ function signup(e)
       myApp.hidePreloader();
       myApp.alert('Please check Username and Password.', 'Could not sign up');
       console.error("Error on ajax call: " + err);
-      console.log(JSON.stringify(xhr));
+      //console.log(JSON.stringify(xhr));
     }
   });
 }
@@ -240,7 +240,7 @@ function login(username, password) {
             myApp.hidePreloader();
             myApp.alert('An error has occurred', 'Get Trainings Error');
             console.error("Error on ajax call: " + err);
-            console.log(JSON.stringify(xhr));
+            //console.log(JSON.stringify(xhr));
           }
         });
     },
@@ -248,7 +248,7 @@ function login(username, password) {
       myApp.hidePreloader();
       myApp.alert('Please check Username and Password.', 'Could not login');
       console.error("Error on ajax call: " + err);
-      console.log(JSON.stringify(xhr));
+      //console.log(JSON.stringify(xhr));
     }
   });
 }
@@ -278,7 +278,7 @@ function getTrainings(e) {
       myApp.alert('An error has occurred', 'Get Trainings Error');
       console.error("Error on ajax call: " + err);
 
-      console.log(JSON.stringify(xhr));
+      //console.log(JSON.stringify(xhr));
       loginlocalStorage.setItem('access_token',null);
       mainView.router.load({
         url: '/',
@@ -360,7 +360,7 @@ function goToNextQuestion(student_training_evaluation_id)
       myApp.hidePreloader();
       myApp.alert('An error has occurred', 'Get Question Error');
       console.error("Error on ajax call: " + err);
-      console.log(JSON.stringify(xhr));
+      //console.log(JSON.stringify(xhr));
     }
   });
 }
@@ -411,7 +411,7 @@ function add_training(e) {
               myApp.hidePreloader();
               myApp.alert('An error has occurred', 'Get Trainings Error');
               console.error("Error on ajax call: " + err);
-              console.log(JSON.stringify(xhr));
+              //console.log(JSON.stringify(xhr));
             }
           });
       }
@@ -420,7 +420,7 @@ function add_training(e) {
       myApp.hidePreloader();
       myApp.alert('An error has occurred', 'Add Training Error');
       console.error("Error on ajax call: " + err);
-      console.log(JSON.stringify(xhr));
+      //console.log(JSON.stringify(xhr));
     }
   });
 }
@@ -448,7 +448,7 @@ function submit_textanswer(e) {
       myApp.hidePreloader();
       myApp.alert('An error has occurred', 'Submit Answer Error');
       console.error("Error on ajax call: " + err);
-      console.log(JSON.stringify(xhr));
+      //console.log(JSON.stringify(xhr));
     }
   });
 }
@@ -478,7 +478,7 @@ function submit_radioanswer(e) {
         myApp.hidePreloader();
         myApp.alert('An error has occurred', 'Submit Answer Error');
         console.error("Error on ajax call: " + err);
-        console.log(JSON.stringify(xhr));
+        //console.log(JSON.stringify(xhr));
       }
     });
    }
@@ -507,7 +507,7 @@ function submit_checkanswer(e) {
       myApp.hidePreloader();
       myApp.alert('An error has occurred', 'Submit Answer Error');
       console.error("Error on ajax call: " + err);
-      console.log(JSON.stringify(xhr));
+      //console.log(JSON.stringify(xhr));
     }
   });
   //return false;
