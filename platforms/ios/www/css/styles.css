@@ -164,7 +164,8 @@ body {
 }
 
 .login-button img {
-width: 75%;
+  width: 75%;
+  max-width: 300px;
 }
 
 .login-list {
@@ -291,6 +292,10 @@ font-size: 16px;
   height: 80px;
   background: url('../img/scb.png') center no-repeat;
   background-size: 60px 60px;
+}
+
+.navbar img {
+  height: 60px;
 }
 
 .login-button-area {
