@@ -4,10 +4,10 @@
     <description>
         An Assessment App
     </description>
-    <author email="vpalsingh@deloitte.com" href="http://assessment.express">
+    <author email="sea.deloitte.digital@gmail.com" href="http://assessment.express">
         Assessment Express
     </author>
-    <versionName>1.0</versionName>
+    <versionName>1.1</versionName>
     <content src="index.html" />
     <access origin="*" />
     <access origin="http://assessment.express" />

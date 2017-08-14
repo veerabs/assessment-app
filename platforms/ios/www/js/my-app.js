@@ -159,6 +159,15 @@ $$(document).on('click', '.panel .favorites-link', function searchLink() {
   });
 });
 
+$$(document).on('click', '.panel .logout-link', function logoutLink() {
+  // @TODO fetch the favorites (if any) from localStorage
+  localStorage.removeItem("access_token");;
+  mainView.router.load({
+    template: myApp.templates.loginpage,
+    animatePages: true,
+    force: true,
+  });
+});
 
 
 function signup(e)
@@ -166,8 +175,8 @@ function signup(e)
   var url = 'http://assessment.express/api/student';
   //e.preventDefault();
   var formData = myApp.formToJSON('#register');
-  var username = document.getElementById("username");
-  var password = document.getElementById("password");
+  var username = formData['student[username]'];
+  var password = formData['student[password]'];
   localStorage.setItem('username', username);
   localStorage.setItem('password', password);
   myApp.showPreloader('Signing you up...');
@@ -178,7 +187,7 @@ function signup(e)
     url: url,
     success: function signupSuccess(resp) {
       myApp.hidePreloader();
-      if(resp.status == "success")
+      if(resp == "{\"status\":\"success\",\"code\":2000}")
       {
         username = localStorage.getItem('username');
         password = localStorage.getItem('password');
