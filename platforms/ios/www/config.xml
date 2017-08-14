@@ -7,6 +7,7 @@
     <author email="sea.deloitte.digital@gmail.com" href="http://assessment.express">
         Assessment Express
     </author>
+    <versionCode>100009</versionCode>
     <content src="index.html" />
     <access origin="*" />
     <access origin="http://assessment.express" />
