@@ -42,6 +42,7 @@
     <author email="vpalsingh@deloitte.com" href="http://assessment.express">
         Assessment Express
     </author>
+    <versionName>2.0</versionName>
     <content src="index.html" />
     <access origin="*" />
     <access origin="http://assessment.express" />

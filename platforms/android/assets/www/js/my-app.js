@@ -17,7 +17,6 @@ function pad2(number) {
   return number;
 }
 
-
 // A stringify helper
 // Need to replace any double quotes in the data with the HTML char
 //  as it is being placed in the HTML attribute data-context
