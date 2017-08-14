@@ -7,7 +7,7 @@
     <author email="sea.deloitte.digital@gmail.com" href="http://assessment.express">
         Assessment Express
     </author>
-    <versionName>1.1</versionName>
+    <versionName>2.0</versionName>
     <content src="index.html" />
     <access origin="*" />
     <access origin="http://assessment.express" />
@@ -24,7 +24,7 @@
     <platform name="android">
         <preference name="android-minSdkVersion" value="14" />
         <allow-intent href="market:*" />
-        <versionName>1.1</versionName>
+        <versionName>2.0</versionName>
         <icon density="ldpi" src="res/icon/android/ldpi/icon.png" />
         <icon density="mdpi" src="res/icon/android/mdpi/icon.png" />
         <icon density="hdpi" src="res/icon/android/hdpi/icon.png" />
