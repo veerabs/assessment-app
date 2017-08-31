@@ -47,33 +47,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "www/index.html",
-			"settings":
-			{
-				"buffer_size": 19878,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/js/my-app.js",
-			"settings":
-			{
-				"buffer_size": 16346,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/css/styles.css",
-			"settings":
-			{
-				"buffer_size": 4474,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -114,26 +87,30 @@
 	"expanded_folders":
 	[
 		"/C/Users/vpalsingh/Documents/General/Assessment Repo",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/platforms/ios",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/plugins",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/res/icon/android",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/res/icon/android/hdpi",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/res/icon/android/mdpi",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/res/screen/android",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/res/screen/android/drawable-port-mdpi",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/www",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/www/css",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/www/img",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/www/js"
+		"/C/Users/vpalsingh/Documents/General/Assessment Repo/platforms/ios/www"
 	],
 	"file_history":
 	[
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/config.xml",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/www/config.xml",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/www/css/styles.css",
-		"/C/Users/vpalsingh/Documents/General/Assessment Repo/plugins/ios.json",
+		"/C/Users/vpalsingh/Documents/General/Assessment Repo/platforms/ios/www/index.html",
+		"/C/Users/vpalsingh/Documents/Personal/Codes/soccerfc/app/views/devise/registrations/new.html.erb",
+		"/C/Users/vpalsingh/Documents/Personal/Codes/soccerfc/app/views/devise/registrations/edit.html.erb",
+		"/C/Users/vpalsingh/Documents/Personal/Codes/soccerfc/app/controllers/marketing_channels_controller.rb",
+		"/C/Users/vpalsingh/Documents/Personal/Codes/soccerfc/app/controllers/funds_allocates_controller.rb",
+		"/C/Users/vpalsingh/Documents/Personal/Codes/soccerfc/app/controllers/base_controller.rb",
+		"/C/Users/vpalsingh/Documents/Personal/Codes/soccerfc/app/controllers/application_controller.rb",
+		"/C/Users/vpalsingh/Documents/Personal/Codes/soccerfc/app/controllers/sessions_controller.rb",
+		"/C/Users/vpalsingh/Documents/Personal/Codes/soccerfc/app/controllers/registrations_controller.rb",
+		"/C/Users/vpalsingh/Documents/Personal/Codes/soccerfc/config/routes.rb",
 		"/C/Users/vpalsingh/Documents/General/Assessment Repo/www/index.html",
 		"/C/Users/vpalsingh/Documents/General/Assessment Repo/www/js/my-app.js",
+		"/C/Users/vpalsingh/Documents/General/Assessment Repo/config.xml",
+		"/C/Users/vpalsingh/Documents/General/Assessment Repo/www/js/init-styles.js",
+		"/C/Users/vpalsingh/Documents/General/Assessment Repo/www/config.xml",
+		"/C/Users/vpalsingh/Documents/General/Assessment Repo/platforms/android/AndroidManifest.xml",
+		"/C/Users/vpalsingh/Downloads/Assessmentexpress-release (3).apk",
+		"/C/Users/vpalsingh/Downloads/deployment_cert (1).der",
+		"/C/Users/vpalsingh/Documents/General/Assessment Repo/www/css/styles.css",
+		"/C/Users/vpalsingh/Documents/General/Assessment Repo/plugins/ios.json",
 		"/C/Users/vpalsingh/Documents/General/Assessment Repo/plugins/fetch.json",
 		"/C/Users/vpalsingh/Documents/General/Assessment Repo/plugins/browser.json",
 		"/C/Users/vpalsingh/Documents/General/Assessment Repo/plugins/android.json",
@@ -241,21 +218,7 @@
 		"/C/Users/veera/Documents/soccerfc-bs/soccerfc/.ebextensions/ruby.config",
 		"/C/Users/veera/Documents/soccerfc-bs/soccerfc/config/environments/production.rb",
 		"/C/Users/veera/Documents/soccerfc-bs/soccerfc/.ebextensions/upgrade_bundler.config",
-		"/C/Users/veera/Documents/soccerfc-bs/soccerfc/app/views/layouts/_header.html.erb",
-		"/C/Users/veera/Documents/soccerfc-bs/soccerfc/config/initializers/assets.rb",
-		"/C/Users/veera/Documents/soccerfc-bs/soccerfc/Rakefile",
-		"/C/Users/veera/Documents/soccerfc-bs/Gemfile",
-		"/C/Users/veera/Documents/soccerfc/config/initializers/devise.rb",
-		"/C/Users/veera/Documents/soccerfc/app/admin/report_deposit_withdraw.rb",
-		"/C/Users/veera/Documents/soccerfc/app/models/ability.rb",
-		"/C/Users/veera/Documents/soccerfc/app/admin/import_batch.rb",
-		"/C/Users/veera/Documents/soccerfc/app/admin/sportsbook_user_turnover.rb",
-		"/C/Users/veera/Documents/soccerfc/app/admin/bonus_batch.rb",
-		"/C/Users/veera/Documents/soccerfc/app/admin/user_bank.rb",
-		"/C/Users/veera/Documents/soccerfc/app/admin/turnovers_to_batch.rb",
-		"/C/Users/veera/Documents/soccerfc/app/admin/sportsbook_user.rb",
-		"/C/Users/veera/Documents/soccerfc/app/admin/sportsbook_company.rb",
-		"/C/Users/veera/Documents/soccerfc/app/admin/sportsbook.rb"
+		"/C/Users/veera/Documents/soccerfc-bs/soccerfc/app/views/layouts/_header.html.erb"
 	],
 	"find":
 	{
@@ -266,6 +229,7 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"C:\\Users\\vpalsingh\\Documents\\General\\Assessment Repo",
 			""
 		]
 	},
@@ -274,6 +238,51 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"version",
+			"config",
+			"code",
+			"100008",
+			"1000",
+			"console.log",
+			"resp ==",
+			"register",
+			"login-page",
+			"login",
+			"template: ",
+			"debug",
+			"versionCode",
+			"versionName",
+			"versionName ",
+			"console.log",
+			"getTr",
+			"login",
+			"Ne",
+			"e.",
+			"defau",
+			"show_student_training_evaluations",
+			"reloadP",
+			"goToNextQuestion",
+			"Next",
+			"next",
+			"register-page",
+			"list-block",
+			"Next",
+			"next",
+			"show_student_training_evaluations",
+			"back",
+			"refresh",
+			"show_student_training_evaluations",
+			"show_student_training_evaluations\n\n",
+			"page-content",
+			"login",
+			"text-align: left",
+			"center",
+			"link",
+			"back",
+			"register",
+			"signup",
+			"login",
+			"reload: t",
 			"radio",
 			"content-block",
 			"16px",
@@ -356,52 +365,7 @@
 			"User",
 			"end",
 			"    column :template",
-			"template",
-			"column",
-			"assess",
-			"username",
-			"path",
-			"directory",
-			"check",
-			"bundle",
-			"sportsbooks\"",
-			"sportsbook\"",
-			"sportsbook_id",
-			"can_manage_user",
-			"authorization",
-			"monthly_bonus_calculated",
-			"batch",
-			"bonus_in",
-			"bonus_in_batch",
-			"_date",
-			"sportsbook_user",
-			"bonus_batches",
-			"bonus",
-			"bulk",
-			"bulk_bon",
-			"sportsbook_user_tu",
-			"join",
-			"funds",
-			"users",
-			"migration",
-			"bank",
-			"reject",
-			"status",
-			"zbb",
-			"sportsbook_user",
-			"user_bank",
-			"account owner name here",
-			"users\"",
-			"password",
-			"email",
-			"password",
-			"user",
-			" \",",
-			"do ",
-			"comment",
-			"funds",
-			"update_st",
-			"reject"
+			"template"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -409,6 +373,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"//console.log",
 			"student",
 			"Student",
 			"Soccer FC",
@@ -424,363 +389,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "www/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19878,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11145,
-								11145
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										11145,
-										11146
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/double_quote.png",
-										"brackethighlighter.default"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										11127,
-										11128
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
-							],
-							"git_gutter_is_enabled": true,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3775.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "www/js/my-app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 16346,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3563,
-								3547
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										3563,
-										3564
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/single_quote.png",
-										"brackethighlighter.default"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										3545,
-										3546
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
-							],
-							"git_gutter_is_enabled": true,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1488.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "www/css/styles.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4474,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4321,
-								4321
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
-							],
-							"git_gutter_is_enabled": true,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3631.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -831,7 +441,7 @@
 	"project": "assessment-app.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -869,7 +479,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 182.0,
+	"side_bar_width": 247.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

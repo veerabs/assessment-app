@@ -136,6 +136,7 @@
   </div>
 </script>
 
+
 <script type="text/template7" id="register">
     <div class="page" data-page="register" id="register-page">
         <div class="page-content">
@@ -195,13 +196,13 @@
 
     <div class="page" data-page="trainings">
         <!-- Fixed navbar for Material theme -->
-
+        {{#if @global.material}}
            <div class="navbar">
             <div class="navbar-inner" data-page="index">
               <div class="center sliding"></div>
             </div>
           </div>
-
+        {{/if}}
 
         <div class="page-content">
          <div class="content-block">
@@ -253,6 +254,7 @@
 
     <div class="page" data-page="student_training_evaluations">
         <!-- Fixed navbar for Material theme -->
+        {{#if @global.material}}
            <div class="navbar">
             <div class="navbar-inner" data-page="index">
               <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
@@ -260,7 +262,7 @@
               <div class="right"><a href="#" class="link refresh"><img src="img/refresh.png" /></i></a></div>
             </div>
           </div>
-
+        {{/if}}
         <div class="page-content">
           <div class="list-block media-list">
             <div class='choose-assessment'>Select a set to take assessment:</div>
