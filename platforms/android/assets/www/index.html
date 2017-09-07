@@ -57,7 +57,10 @@
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main">
       <!-- Top Navbar-->
-
+      <div class="navbar">
+        <div class="navbar-inner navbar-nologo" data-page="index">
+        </div>
+      </div>
       <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
       <div class="pages navbar-through toolbar-through">
         <!-- Page, "data-page" contains page name -->
@@ -100,7 +103,15 @@
   </div>
 
 <script type="text/template7" id="loginpage">
-  <div data-page="index" class="page" id="index-page">
+      {{#if @global.ios}}
+    <!-- Dynamic navbar for iOS theme -->
+    <div class="navbar">
+        <div class="navbar-inner">
+          <div class="center sliding"></div>
+        </div>
+    </div>
+    {{/if}}
+    <div data-page="index" class="page" id="index-page">
     <!-- Scrollable page content -->
     <div class="page-content">
     <div class="content-block">
@@ -120,7 +131,7 @@
               <div class="item-inner">
                 <div class='password'><img src='img/lock.png' /></div>
                 <div class="password-input">
-                  <input type="password" name="password" placeholder="Password"/>
+                  <input id="password-textbox" type="password" name="password" placeholder="Password"/>
                 </div>
               </div>
             </li>
@@ -192,13 +203,21 @@
   </script>
 
   <script type="text/template7" id="trainings">
-
+    {{#if @global.ios}}
+    <!-- Dynamic navbar for iOS theme -->
+    <div class="navbar">
+        <div class="navbar-inner navbar-logo">
+          <div class="center sliding"></div>
+        </div>
+    </div>
+    {{/if}}
 
     <div class="page" data-page="trainings">
-        <!-- Fixed navbar for Material theme -->
+
         {{#if @global.material}}
-           <div class="navbar">
-            <div class="navbar-inner" data-page="index">
+          <!-- Fixed navbar for Material theme -->
+          <div class="navbar">
+            <div class="navbar-inner navbar-logo" data-page="index">
               <div class="center sliding"></div>
             </div>
           </div>
@@ -237,6 +256,13 @@
                     <div class="card-header my-card bold" data-item="{{this.id}}">{{this.training.name}}</div>
                     <div class="card-content" data-item="{{this.id}}">
                       <div class="card-content-inner left" data-item="{{this.id}}">{{this.training.description}}</div>
+                      <div class="card-content-inner" style="text-align:right;">
+                        {{#js_compare "this.status === 1"}}
+                          Ongoing
+                        {{else}}
+                          Completed
+                        {{/js_compare }}
+                      </div>
                     </div>
                   </div>
                   </a>
@@ -250,13 +276,21 @@
   </script>
 
   <script type="text/template7" id="student_training_evaluations">
+    {{#if @global.ios}}
     <!-- Dynamic navbar for iOS theme -->
+    <div class="navbar">
+        <div class="navbar-inner navbar-logo">
+          <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
+          <div class="center sliding"></div>
+        </div>
+    </div>
+    {{/if}}
 
     <div class="page" data-page="student_training_evaluations">
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
            <div class="navbar">
-            <div class="navbar-inner" data-page="index">
+            <div class="navbar-inner navbar-logo" data-page="index">
               <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
               <div class="center sliding"></div>
               <div class="right"><a href="#" class="link refresh"><img src="img/refresh.png" /></i></a></div>
@@ -296,7 +330,7 @@
     <!-- Dynamic navbar for iOS theme -->
     {{#if @global.ios}}
     <div class="navbar">
-        <div class="navbar-inner">
+        <div class="navbar-inner navbar-logo">
           <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
           <div class="center sliding"></div>
         </div>
@@ -307,7 +341,7 @@
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
            <div class="navbar">
-            <div class="navbar-inner" data-page="index">
+            <div class="navbar-inner navbar-logo" data-page="index">
           <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
           <div class="center sliding"></div>
             </div>
@@ -355,7 +389,7 @@
     <!-- Dynamic navbar for iOS theme -->
     {{#if @global.ios}}
     <div class="navbar">
-        <div class="navbar-inner">
+        <div class="navbar-inner navbar-logo">
           <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
           <div class="center sliding"></div>
         </div>
@@ -366,7 +400,7 @@
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
            <div class="navbar">
-            <div class="navbar-inner" data-page="index">
+            <div class="navbar-inner navbar-logo" data-page="index">
               <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
               <div class="center sliding"></div>
             </div>
@@ -414,7 +448,7 @@
     <!-- Dynamic navbar for iOS theme -->
     {{#if @global.ios}}
     <div class="navbar">
-        <div class="navbar-inner">
+        <div class="navbar-inner navbar-logo">
           <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
           <div class="center sliding"></div>
         </div>
@@ -425,7 +459,7 @@
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
            <div class="navbar">
-            <div class="navbar-inner" data-page="index">
+            <div class="navbar-inner navbar-logo" data-page="index">
               <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
               <div class="center sliding"></div>
             </div>

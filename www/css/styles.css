@@ -11,7 +11,7 @@ body {
 }
 
 .page-content {
-  margin-top: 80px;
+  margin-top: 20px;
   touch-action: pan-y;
   -ms-touch-action: pan-y;
 }
@@ -156,6 +156,7 @@ body {
 
 .logo img {
   width: 30%;
+  max-width: 150px;
 }
 
 .login-button {
@@ -233,10 +234,20 @@ font-size: 16px;
   margin-bottom: 20px !important;
 }
 
-.navbar
-{
+.navbar {
   background: white;
+  height: 80px;
+}
 
+.navbar-logo
+{
+  height: 80px;
+  background: url('../img/scb.png') center no-repeat;
+  background-size: 60px 60px;
+}
+
+.navbar-nologo {
+  display: none;
 }
 
 .center {
@@ -287,12 +298,6 @@ font-size: 16px;
   text-align: center !important;
 }
 
-
-.navbar {
-  height: 80px;
-  background: url('../img/scb.png') center no-repeat;
-  background-size: 60px 60px;
-}
 
 .navbar img {
   height: 60px;

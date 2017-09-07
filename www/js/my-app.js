@@ -45,7 +45,7 @@ var myApp = new Framework7({
   precompileTemplates: true,
   swipePanel: 'left',
   swipePanelActiveArea: '30',
-  swipeBackPage: true,
+  swipeBackPage: false,
   animateNavBackIcon: true,
   pushState: !!Framework7.prototype.device.os,
 });
@@ -63,9 +63,34 @@ $$(document).on('deviceready', function deviceIsReady() {
   access_token=localStorage.getItem('access_token');
   if(access_token != null)
   {
-    getTrainings(null);
+    getStatus(access_token);
   }
+
 });
+
+
+
+function getStatus(access_token)
+{
+  var url = 'http://assessment.express/api/student_trainings?access_token=' + access_token;
+  //e.preventDefault();
+
+  myApp.showPreloader('Loading...');
+  $$.ajax({
+    type: 'GET',
+    dataType: 'json',
+    processData: true,
+    url: url,
+    success: function isLoggedIn(resp) {
+      myApp.hidePreloader();
+      getTrainings(null);
+    },
+    error: function statusError(xhr, err) {
+      myApp.hidePreloader();
+      localStorage.setItem('access_token',null);
+    }
+  });
+}
 
 function register()
 {
@@ -78,7 +103,7 @@ function show_student_training_evaluations(student_training_id, reload, reloadPr
   // If not using card as link, use this instead of the below
   //student_training_id = e.currentTarget.activeElement.dataset.item;
 
-  access_token=localStorage.getItem('access_token');
+    access_token=localStorage.getItem('access_token');
 
  if(isNaN(student_training_id))
     student_training_id=localStorage.getItem('student_training_id');
@@ -255,7 +280,7 @@ function login(username, password) {
     error: function loginError(xhr, err) {
       myApp.hidePreloader();
       myApp.alert('Please check Username and Password.', 'Could not login');
-      console.error("Error on ajax call: " + err);
+      //console.error("Error on ajax call: " + err);
       //console.log(JSON.stringify(xhr));
     }
   });
@@ -287,7 +312,7 @@ function getTrainings(e) {
       console.error("Error on ajax call: " + err);
 
       //console.log(JSON.stringify(xhr));
-      loginlocalStorage.setItem('access_token',null);
+      localStorage.setItem('access_token',null);
       mainView.router.load({
         url: '/',
 
@@ -527,6 +552,7 @@ function login_click(e) {
   var password = formData.password;
   login(username, password);
 }
+
 
 $$(document).on('submit', '#login', function login_with_form(e) {
   var formData = myApp.formToJSON('#login');
