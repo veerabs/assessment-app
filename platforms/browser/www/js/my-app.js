@@ -1,4 +1,6 @@
 
+var base_path = "";
+var image_path = "http://assessment.express/assets/app/";
 
 // Code for platform detection
 var isMaterial = Framework7.prototype.device.ios === false;
@@ -8,6 +10,8 @@ var isIos = Framework7.prototype.device.ios === true;
 Template7.global = {
   material: isMaterial,
   ios: isIos,
+  basepath: base_path,
+  imagepath: image_path
 };
 
 // A template helper to turn ms durations to mm:ss
@@ -65,6 +69,13 @@ $$(document).on('deviceready', function deviceIsReady() {
   {
     getStatus(access_token);
   }
+
+  $$('.img').each(function() {
+     var $img = $$(this);
+     var imgsrc = $img.src;
+     var imgsrc2 =image_path + imgsrc;
+     $img.attr('src',imgsrc2);
+  });
 
 });
 
@@ -399,11 +410,13 @@ function goToNextQuestion(student_training_evaluation_id)
 }
 
 
+
 function add_training(e) {
+  training_code = e.target[0].value;
+  e.preventDefault();
   var url = 'http://assessment.express/api/student_trainings';
-  //e.preventDefault();
-  var formData = myApp.formToJSON('#submit_training_code');
-  var training_code = formData.training_code;
+  //var formData = myApp.formToJSON('#submit_training_code');
+  //var training_code = formData.training_code;
   var access_token = localStorage.getItem('access_token');
   myApp.showPreloader('Adding training...');
   $$.ajax({
@@ -546,21 +559,14 @@ function submit_checkanswer(e) {
   //return false;
 }
 
-function login_click(e) {
-  var formData = myApp.formToJSON('#login');
-  var username = formData.username;
-  var password = formData.password;
-  login(username, password);
-}
-
-
 $$(document).on('submit', '#login', function login_with_form(e) {
-  var formData = myApp.formToJSON('#login');
-  var username = formData.username;
-  var password = formData.password;
+  e.preventDefault();
+  var username = e.target[0].value;
+  var password = e.target[1].value;
   login(username, password);
 });
+
 //$$(document).on('submit', '#submit_checkanswer', submit_checkanswer);
 //$$(document).on('submit', '#submit_textanswer', submit_textanswer);
-//$$(document).on('submit', '#submit_training_code', add_training);
+$$(document).on('submit', '#submit_training_code', add_training);
 

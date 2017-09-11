@@ -11,7 +11,7 @@
         * Enable inline JS: add 'unsafe-inline' to default-src
     -->
   <!-- Removing 'unsafe-eval'. If needed, I will figure out a way around it  -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com http://assessment.express 'unsafe-eval' 'unsafe-inline' ws://*; style-src 'self' 'unsafe-inline'; media-src *
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com http://assessment.express 'unsafe-eval' 'unsafe-inline' ws://*; style-src 'self' 'unsafe-inline' http://assessment.express ; media-src *
   'self' data: gap: https://ssl.gstatic.com http://assessment.express ; img-src *   data: gap: https://ssl.gstatic.com http://assessment.express ">
 
   <!-- Required meta tags-->
@@ -22,7 +22,6 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
   <link rel="stylesheet" href="lib/font-awesome-4.5.0/css/font-awesome.min.css" />
-
   <title>Assessment Express</title>
 </head>
 
@@ -57,7 +56,7 @@
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main">
       <!-- Top Navbar-->
-      <div class="navbar">
+      <div class="navbar ios-navbar">
         <div class="navbar-inner navbar-nologo" data-page="index">
         </div>
       </div>
@@ -68,13 +67,13 @@
           <!-- Scrollable page content -->
           <div class="page-content">
           <div class="content-block">
-             <div class="content-block-title"><div class='logo'><img src='img/scb.png' /></div></div>
+             <div class="content-block-title"><div class='logo'><img src='http://assessment.express/assets/app/logo.png' /></div></div>
              <form action="#" method="GET" id="login">
               <div class="list-block">
                 <ul>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class='username'><img src='img/user.png' /></div>
+                      <div class='username'><img src='http://assessment.express/assets/app/user.png' /></div>
                       <div class="username-input">
                         <input type="text" name="username" placeholder="Username"/>
                       </div>
@@ -82,7 +81,7 @@
                   </li>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class='password'><img src='img/lock.png' /></div>
+                      <div class='password'><img src='http://assessment.express/assets/app/lock.png' /></div>
                       <div class="password-input">
                         <input type="password" name="password" placeholder="Password"/>
                       </div>
@@ -91,7 +90,7 @@
                 </ul>
               </div>
               <div class="list-block login-button-area">
-                  <a href='#' onclick='login_click(this)' class="login-button login-submit"  value="Sign In"><img src='img/login.png' /></a>
+                   <button class="button-img" type="submit"><img src="http://assessment.express/assets/app/login.png" /></button>
               </div>
               <div class="sign-up"><a href="#"  onclick="register()" class="signup-link">Sign up here.</a></div>
             </form>
@@ -115,13 +114,13 @@
     <!-- Scrollable page content -->
     <div class="page-content">
     <div class="content-block">
-       <div class="content-block-title"><div class='logo'><img src='img/scb.png' /></div></div>
+       <div class="content-block-title"><div class='logo'><img src='{{@global.imagepath}}logo.png' /></div></div>
        <form action="#" method="GET" id="login">
         <div class="list-block">
           <ul>
             <li class="item-content">
               <div class="item-inner">
-                <div class='username'><img src='img/user.png' /></div>
+                <div class='username'><img src='{{@global.imagepath}}user.png' /></div>
                 <div class="username-input">
                   <input type="text" name="username" placeholder="Username"/>
                 </div>
@@ -129,7 +128,7 @@
             </li>
             <li class="item-content">
               <div class="item-inner">
-                <div class='password'><img src='img/lock.png' /></div>
+                <div class='password'><img src='{{@global.imagepath}}lock.png' /></div>
                 <div class="password-input">
                   <input id="password-textbox" type="password" name="password" placeholder="Password"/>
                 </div>
@@ -138,7 +137,7 @@
           </ul>
         </div>
         <div class="list-block login-button-area">
-            <a href='#' onclick='login_click(this)' class="login-button login-submit"  value="Sign In"><img src='img/login.png' /></a>
+             <button class="button-img" type="submit"><img src="{{@global.imagepath}}login.png" /></button>
         </div>
         <div class="sign-up"><a href="#"  onclick="register()" class="signup-link">Sign up here.</a></div>
       </form>
@@ -152,13 +151,13 @@
     <div class="page" data-page="register" id="register-page">
         <div class="page-content">
          <div class="content-block">
-           <div class="content-block-title"><div class='logo'><img src='img/scb.png' /></div></div>
+           <div class="content-block-title"><div class='logo'><img src='{{@global.imagepath}}logo.png' /></div></div>
            <form action="#" method="POST" id="register">
               <div class="list-block">
                 <ul>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class='name'><img src='img/user.png' /></div>
+                      <div class='name'><img src='{{@global.imagepath}}user.png' /></div>
                       <div class="name-input">
                         <input type="text" name="student[name]" placeholder="Name"/>
                       </div>
@@ -166,7 +165,7 @@
                   </li>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class='username'><img src='img/user.png' /></div>
+                      <div class='username'><img src='{{@global.imagepath}}user.png' /></div>
                       <div class="username-input">
                         <input type="text" name="student[username]" placeholder="Username"/>
                       </div>
@@ -174,7 +173,7 @@
                   </li>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class='password'><img src='img/lock.png' /></div>
+                      <div class='password'><img src='{{@global.imagepath}}lock.png' /></div>
                       <div class="password-input">
                         <input type="password" name="student[password]" placeholder="Password"/>
                       </div>
@@ -182,7 +181,7 @@
                   </li>
                   <li class="item-content">
                     <div class="item-inner">
-                      <div class='password'><img src='img/lock.png' /></div>
+                      <div class='password'><img src='{{@global.imagepath}}lock.png' /></div>
                       <div class="password-input">
                         <input type="password" name="student[password_confirmation]" placeholder="Retype Password"/>
                       </div>
@@ -193,7 +192,7 @@
               </div>
               <input type="hidden" name="student[email]" value="unused@scb.co.th" />
               <div class="list-block login-button-area">
-                    <a href='#' onclick='signup(this)' class="login-button login-submit" value="Sign Up"><img src='img/signup.png' /></a>
+                    <a href='#' onclick='signup(this)' class="login-button login-submit" value="Sign Up"><img src='{{@global.imagepath}}signup.png' /></a>
               </div>
               <div class="sign-up"><a href="#" class="back link signup-link">Login here.</a></div>
             </form>
@@ -205,7 +204,7 @@
   <script type="text/template7" id="trainings">
     {{#if @global.ios}}
     <!-- Dynamic navbar for iOS theme -->
-    <div class="navbar">
+    <div class="navbar ios-navbar">
         <div class="navbar-inner navbar-logo">
           <div class="center sliding"></div>
         </div>
@@ -216,7 +215,7 @@
 
         {{#if @global.material}}
           <!-- Fixed navbar for Material theme -->
-          <div class="navbar">
+          <div class="navbar material-navbar">
             <div class="navbar-inner navbar-logo" data-page="index">
               <div class="center sliding"></div>
             </div>
@@ -239,8 +238,7 @@
                        </div>
                     </div>
                   </div>
-                   <a href='#' onclick='add_training(this)' class="login-button login-submit"><img src='img/joinnow.png' /></a>
-
+                  <button class="button-img" type="submit"><img class="img" src="{{@global.imagepath}}joinnow.png" /></button>
               </li>
             </ul>
           </div>
@@ -280,8 +278,9 @@
     <!-- Dynamic navbar for iOS theme -->
     <div class="navbar">
         <div class="navbar-inner navbar-logo">
-          <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
+          <div class="left"><a href="#" class="link back"><img src="{{@global.imagepath}}back.png" /></a></div>
           <div class="center sliding"></div>
+          <div class="right"><a href="#" class="link refresh"><img src="{{@global.imagepath}}refresh.png" /></a></div>
         </div>
     </div>
     {{/if}}
@@ -291,9 +290,9 @@
         {{#if @global.material}}
            <div class="navbar">
             <div class="navbar-inner navbar-logo" data-page="index">
-              <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
+              <div class="left"><a href="#" class="link back"><img src="{{@global.imagepath}}back.png" /></a></div>
               <div class="center sliding"></div>
-              <div class="right"><a href="#" class="link refresh"><img src="img/refresh.png" /></i></a></div>
+              <div class="right"><a href="#" class="link refresh"><img src="{{@global.imagepath}}refresh.png" /></a></div>
             </div>
           </div>
         {{/if}}
@@ -331,7 +330,7 @@
     {{#if @global.ios}}
     <div class="navbar">
         <div class="navbar-inner navbar-logo">
-          <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
+          <div class="left"><a href="#" class="link back"><img src="{{@global.imagepath}}back.png" />/a></div>
           <div class="center sliding"></div>
         </div>
     </div>
@@ -342,7 +341,7 @@
         {{#if @global.material}}
            <div class="navbar">
             <div class="navbar-inner navbar-logo" data-page="index">
-          <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
+          <div class="left"><a href="#" class="link back"><img src="{{@global.imagepath}}back.png" /></a></div>
           <div class="center sliding"></div>
             </div>
           </div>
@@ -375,7 +374,7 @@
             <input type="hidden" id="student_training_evaluation_id" value="{{student_training_evaluation_id}}" />
             <input type="hidden" id="question_id" value="{{question.id}}" />
             <!--<input type="submit" onclick="submit_radioanswer(this)" class="button button-big button-fill answer-submit" value="Next" />-->
-            <a href='#' onclick='submit_radioanswer(this)' class="login-button login-submit"><img src='img/next.png' /></a>
+            <a href='#' onclick='submit_radioanswer(this)' class="login-button login-submit"><img src='{{@global.imagepath}}next.png' /></a>
 
             <!--<input type='button' value='Next' onclick="submit_radioanswer(this)" />-->
           </div>
@@ -390,7 +389,7 @@
     {{#if @global.ios}}
     <div class="navbar">
         <div class="navbar-inner navbar-logo">
-          <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
+          <div class="left"><a href="#" class="link back"><img src="{{@global.imagepath}}back.png" /></a></div>
           <div class="center sliding"></div>
         </div>
     </div>
@@ -401,7 +400,7 @@
         {{#if @global.material}}
            <div class="navbar">
             <div class="navbar-inner navbar-logo" data-page="index">
-              <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
+              <div class="left"><a href="#" class="link back"><img src="{{@global.imagepath}}back.png" /></a></div>
               <div class="center sliding"></div>
             </div>
           </div>
@@ -435,7 +434,7 @@
             <input type="hidden" id="student_training_evaluation_id" value="{{student_training_evaluation_id}}" />
             <input type="hidden" id="question_id" value="{{question.id}}" />
             <!--<input type="submit" class="button button-big button-fill answer-submit" value="Next" />-->
-            <a href='#' onclick='submit_checkanswer(this)' class="login-button login-submit"><img src='img/next.png' /></a>
+            <a href='#' onclick='submit_checkanswer(this)' class="login-button login-submit"><img src='{{@global.imagepath}}next.png' /></a>
             <!--<input type='button' value='Next' onclick="submit_checkanswer(this)" />-->
           </div>
         </form>
@@ -449,7 +448,7 @@
     {{#if @global.ios}}
     <div class="navbar">
         <div class="navbar-inner navbar-logo">
-          <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
+          <div class="left"><a href="#" class="link back"><img src="{{@global.imagepath}}back.png" /></a></div>
           <div class="center sliding"></div>
         </div>
     </div>
@@ -460,7 +459,7 @@
         {{#if @global.material}}
            <div class="navbar">
             <div class="navbar-inner navbar-logo" data-page="index">
-              <div class="left"><a href="#" class="link back"><img src="img/back.png" /></i></a></div>
+              <div class="left"><a href="#" class="link back"><img src="{{@global.imagepath}}back.png" /></a></div>
               <div class="center sliding"></div>
             </div>
           </div>
@@ -489,7 +488,7 @@
             <input type="hidden" id="student_training_evaluation_id" value="{{student_training_evaluation_id}}" />
             <input type="hidden" id="question_id" value="{{question.id}}" />
             <!--<input type="submit"  onclick="submit_textanswer(this)" class="button button-big button-fill answer-submit" value="Next" />-->
-            <a href='#' onclick='submit_textanswer(this)' class="login-button login-submit"><img src='img/next.png' /></a>
+            <a href='#' onclick='submit_textanswer(this)' class="login-button login-submit"><img src='{{@global.imagepath}}next.png' /></a>
             <!--<input type='button' value='Next' onclick="submit_textanswer(this)" />-->
           </div>
         </form>
