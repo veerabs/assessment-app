@@ -51,16 +51,25 @@
 			"file": "www/index.html",
 			"settings":
 			{
-				"buffer_size": 20484,
+				"buffer_size": 21404,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/js/init-styles.js",
+			"settings":
+			{
+				"buffer_size": 909,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "www/js/my-app.js",
 			"settings":
 			{
-				"buffer_size": 18025,
+				"buffer_size": 17958,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -69,7 +78,7 @@
 			"file": "www/css/styles.css",
 			"settings":
 			{
-				"buffer_size": 4846,
+				"buffer_size": 5085,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -267,6 +276,30 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"http://assessment.express/assets/app/",
+			"scb",
+			"</i>",
+			"img/",
+			"img",
+			"js",
+			"Io",
+			"iO",
+			"global",
+			"{{",
+			"e.",
+			"login",
+			"login_click",
+			"login",
+			"submit_training_code",
+			"add_training",
+			"login-button",
+			"add_training",
+			"join",
+			"navbar",
+			"top",
+			"view",
+			"<!-- Top Navbar-->",
+			"navbar",
 			"iOS",
 			"read",
 			"password-textbox",
@@ -370,31 +403,7 @@
 			"margin-top: 78px;\n}",
 			"navbar",
 			"media",
-			"src",
-			"goToNextQuestion",
-			"item",
-			"submit_textanswer",
-			"localStorage.setItem",
-			"localStorage",
-			"content-block",
-			"favorites",
-			"track",
-			"localStor",
-			"pageInit",
-			"myApp",
-			"getTrainings",
-			"search",
-			"search-link",
-			"search-subm",
-			"search",
-			"template",
-			"limit",
-			"searchSu",
-			"search",
-			"about",
-			"sign",
-			"about",
-			"awesome"
+			"src"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -402,6 +411,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"{{@global.imagepath}}",
 			"//console.log",
 			"student",
 			"Student",
@@ -418,7 +428,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -427,15 +437,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20484,
+						"buffer_size": 21404,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8733,
-								8733
+								933,
+								933
 							]
 						],
 						"settings":
@@ -445,12 +455,27 @@
 							{
 								"close":
 								{
+									"1":
+									[
+										1093,
+										1094
+									]
 								},
 								"icon":
 								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"brackethighlighter.default"
+									]
 								},
 								"open":
 								{
+									"1":
+									[
+										756,
+										757
+									]
 								},
 								"unmatched":
 								{
@@ -523,27 +548,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2873.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "www/js/my-app.js",
+					"file": "www/js/init-styles.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 18025,
+						"buffer_size": 909,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								146,
-								146
+								401,
+								401
 							]
 						],
 						"settings":
@@ -553,12 +578,27 @@
 							{
 								"close":
 								{
+									"1":
+									[
+										403,
+										404
+									]
 								},
 								"icon":
 								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/single_quote.png",
+										"brackethighlighter.default"
+									]
 								},
 								"open":
 								{
+									"1":
+									[
+										324,
+										325
+									]
 								},
 								"unmatched":
 								{
@@ -634,24 +674,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "www/css/styles.css",
+					"file": "www/js/my-app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4846,
+						"buffer_size": 17958,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2975,
-								2975
+								76,
+								39
 							]
 						],
 						"settings":
@@ -663,8 +703,131 @@
 								{
 									"1":
 									[
-										3020,
-										3021
+										76,
+										77
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										38,
+										39
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"git_gutter_is_enabled": true,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "www/css/styles.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5085,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5081,
+								5081
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										5083,
+										5084
 									]
 								},
 								"icon":
@@ -679,8 +842,8 @@
 								{
 									"1":
 									[
-										2974,
-										2975
+										5061,
+										5062
 									]
 								},
 								"unmatched":
@@ -753,11 +916,11 @@
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
-						"translation.y": 2073.0,
+						"translation.x": 0.0,
+						"translation.y": 4482.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
