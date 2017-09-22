@@ -14,6 +14,25 @@ Template7.global = {
   imagepath: image_path
 };
 
+Template7.registerHelper('radio_buttons', function (question, options){
+  var ret = '';
+  for (i = 1; i<=question.answer_choices ;i++)
+  {
+    ret = ret + '<li>' +
+      '<label class="label-radio item-content">' +
+        '<input type="radio" data-item="' + question.id + '" class="radio_answer_' + question.id + '" name="radio_answer" id="radio_answer_' + question.id + '_' + i + '" required value="' + i + '">' +
+        '<div class="item-media">' +
+          '<i class="icon icon-form-radio"></i>' +
+        '</div>' +
+        '<div class="item-inner">' +
+          '<div class="">' + question['answer_choice_'+i] + '</div>' +
+        '</div>' +
+      '</label>' +
+    '</li>';
+  }
+  return ret;
+});
+
 // A template helper to turn ms durations to mm:ss
 // We need to be able to pad to 2 digits
 function pad2(number) {
@@ -110,18 +129,18 @@ function register()
   });
 }
 
-function show_student_training_evaluations(student_training_id, reload, reloadPrevious) {
+function show_student_training_question_sets(student_training_id, reload, reloadPrevious) {
   // If not using card as link, use this instead of the below
   //student_training_id = e.currentTarget.activeElement.dataset.item;
 
-    access_token=localStorage.getItem('access_token');
+  access_token=localStorage.getItem('access_token');
 
  if(isNaN(student_training_id))
     student_training_id=localStorage.getItem('student_training_id');
   else
     localStorage.setItem('student_training_id',student_training_id);
 
-  var url = 'http://assessment.express/api/student_training?student_training_id=' + student_training_id + '&access_token=' + access_token;
+  var url = 'http://assessment.express/api/student_training_questions?student_training_id=' + student_training_id + '&access_token=' + access_token;
 
   myApp.showPreloader('Getting assessments...');
   $$.ajax({
@@ -130,11 +149,13 @@ function show_student_training_evaluations(student_training_id, reload, reloadPr
     processData: true,
     url: url,
     success: function assessmentsSuccess(resp) {
+      localStorage.setItem('student_training_question_sets',JSON.stringify(resp));
+      resp = JSON.parse(localStorage.getItem('student_training_question_sets'));
       myApp.hidePreloader();
       mainView.router.load({
-        template: myApp.templates.student_training_evaluations,
+        template: myApp.templates.student_training_question_sets,
         context: {
-          student_training_evaluations: resp,
+          student_training_question_sets: resp,
         },
         reload: reload,
         reloadPrevious: false
@@ -149,34 +170,34 @@ function show_student_training_evaluations(student_training_id, reload, reloadPr
   });
 }
 
-$$(document).on('click', '.refresh', function evaluationLink(e)
-  {
-    student_training_id=localStorage.getItem('student_training_id');
-    show_student_training_evaluations(student_training_id, true, false);
-  });
+$$(document).on('click', '.refresh', function question_setLink(e)
+{
+  student_training_id=localStorage.getItem('student_training_id');
+  show_student_training_question_sets(student_training_id, true, false);
+});
 
 
-$$(document).on('click', '.student_training_evaluation_link', function evaluationLink(e)
-  {
-    show_student_training_evaluations(e.target.dataset.item, false, false);
-  });
+$$(document).on('click', '.student_training_question_set_link', function question_setLink(e)
+{
+  show_student_training_question_sets(e.target.dataset.item, false, false);
+});
 
-$$(document).on('click', '.back_to_assessment', function evaluationLink(e)
-  {
-    student_training_id=localStorage.getItem('student_training_id');
-    show_student_training_evaluations(student_training_id, false, false);
-  });
+$$(document).on('click', '.back_to_assessment', function question_setLink(e)
+{
+  student_training_id=localStorage.getItem('student_training_id');
+  show_student_training_question_sets(student_training_id, false, false);
+});
 
-$$(document).on('click', '.back_to_training', function evaluationLink(e)
-  {
-    getTrainings(null);
-  });
+$$(document).on('click', '.back_to_training', function question_setLink(e)
+{
+  getTrainings(null);
+});
 
-$$(document).on('click', '.take-assessment-button', function evaluationLink(e)
-  {
-    student_training_evaluation_id = e.target.dataset.item;
-    goToNextQuestion(student_training_evaluation_id);
-  });
+$$(document).on('click', '.take-assessment-button', function question_setLink(e)
+{
+  student_training_question_set_id = e.target.dataset.item;
+  goToNextLocalQuestion(student_training_question_set_id);
+});
 
 $$(document).on('click', '.panel .training-link', function trainingLink() {
   getTrainings(null); });
@@ -332,22 +353,105 @@ function getTrainings(e) {
   });
 }
 
-function goToNextQuestion(student_training_evaluation_id)
+function getNextQuestionFromStorage(student_training_question_set_id)
+{
+  var student_training_question_set = null;
+  student_training_question_sets = JSON.parse(localStorage.getItem('student_training_question_sets'));
+  for(i =0; i < student_training_question_sets.length; i ++)
+  {
+    if(student_training_question_sets[i].id == student_training_question_set_id)
+    {
+      student_training_question_set = student_training_question_sets[i];
+    }
+  }
+  if(student_training_question_set != null)
+  {
+    student_answers = student_training_question_set.student_answer_choices;
+    training_questions = student_training_question_set.training_question_set.training_questions;
+    for (j=0; j< training_questions.length; j++)
+    {
+      training_question_id = training_questions[j].id;
+      matched = false;
+      for (k=0;  k< student_answers.length; k++)
+      {
+        if(student_answers[k].training_question_id == training_question_id)
+        {
+          matched = true;
+        }
+      }
+      if(!matched)
+      {
+        return training_questions[j];
+      }
+    }
+  }
+}
+
+function goToNextLocalQuestion(student_training_question_set_id)
 {
   myApp.hidePreloader();
-  if(isNaN(student_training_evaluation_id))
+  if(isNaN(student_training_question_set_id))
    {
-     student_training_evaluation_id=localStorage.getItem('student_training_evaluation_id');
+     student_training_question_set_id=localStorage.getItem('student_training_question_set_id');
      reload = true;
    }
   else
   {
-    localStorage.setItem('student_training_evaluation_id',student_training_evaluation_id);
+    localStorage.setItem('student_training_question_set_id',student_training_question_set_id);
+    reload = false;
+  }
+
+  template = null;
+  resp = getNextQuestionFromStorage(student_training_question_set_id);
+
+  localStorage.setItem('training_question_id', resp.id);
+  if(resp.status != 'empty') //if resp has an asnwer_type_id
+  {
+    if (resp.answer_type_id == '1')
+    {
+      template = myApp.templates.text_question;
+    }
+    else if (resp.answer_type_id == '2')
+    {
+      template = myApp.templates.radio_question;
+    }
+    else
+    {
+      template = myApp.templates.checkbox_question;
+    }
+    mainView.router.load({
+        template: template,
+        context: {
+          question: resp,
+          student_training_question_set_id: student_training_question_set_id,
+        },
+        reload: reload
+    });
+  }
+  else
+  {
+    localStorage.setItem('student_training_question_set_id',null);
+    student_training_id=localStorage.getItem('student_training_id');
+    show_student_training_question_sets(student_training_id, true, true);
+  }
+}
+
+function goToNextQuestion(student_training_question_set_id)
+{
+  myApp.hidePreloader();
+  if(isNaN(student_training_question_set_id))
+   {
+     student_training_question_set_id=localStorage.getItem('student_training_question_set_id');
+     reload = true;
+   }
+  else
+  {
+    localStorage.setItem('student_training_question_set_id',student_training_question_set_id);
     reload = false;
   }
   //app.formToJSON('#query-form');
   access_token = localStorage.getItem('access_token');
-  var url = 'http://assessment.express/api/student_training_evaluation?access_token=' + access_token + '&student_training_evaluation_id='+student_training_evaluation_id;
+  var url = 'http://assessment.express/api/student_training_question_set?access_token=' + access_token + '&student_training_question_set_id='+student_training_question_set_id;
   //e.preventDefault();
 
   //myApp.showPreloader('Getting next question...');
@@ -359,8 +463,8 @@ function goToNextQuestion(student_training_evaluation_id)
     success: function questionSuccess(resp) {
      // myApp.hidePreloader();
       template = null;
-      student_training_evaluation_id = localStorage.getItem('student_training_evaluation_id');
-      localStorage.setItem('question_id', resp.id);
+      student_training_question_set_id = localStorage.getItem('student_training_question_set_id');
+      localStorage.setItem('training_question_id', resp.id);
       if(resp.status != 'empty') //if resp has an asnwer_type_id
       {
         if (resp.answer_type_id == '1')
@@ -379,23 +483,23 @@ function goToNextQuestion(student_training_evaluation_id)
             template: template,
             context: {
               question: resp,
-              student_training_evaluation_id: student_training_evaluation_id,
+              student_training_question_set_id: student_training_question_set_id,
             },
             reload: reload
         });
       }
       else
       {
-        localStorage.setItem('student_training_evaluation_id',null);
+        localStorage.setItem('student_training_question_set_id',null);
         student_training_id=localStorage.getItem('student_training_id');
-        show_student_training_evaluations(student_training_id, true, true);
+        show_student_training_question_sets(student_training_id, true, true);
 
-        /*student_training_evaluations = JSON.parse(resp.student_training_evaluations);
+        /*student_training_question_sets = JSON.parse(resp.student_training_question_sets);
         myApp.hidePreloader();
         mainView.router.load({
-          template: myApp.templates.student_training_evaluations,
+          template: myApp.templates.student_training_question_sets,
           context: {
-            student_training_evaluations: resp.student_training_evaluations,
+            student_training_question_sets: resp.student_training_question_sets,
           },
         });*/
       }
@@ -474,22 +578,22 @@ function add_training(e) {
 function submit_textanswer(e) {
   //e.preventDefault();
   var question_id = localStorage.getItem('question_id');
-  var formData = myApp.formToJSON('#submit_textanswer_'+question_id);
-  var text_answer =$$('#text_answer_'+question_id)[0].value;
-  var student_training_evaluation_id = localStorage.getItem('student_training_evaluation_id');
-  var url = 'http://assessment.express/api/student_training_evaluation';
+  var formData = myApp.formToJSON('#submit_textanswer_'+training_question_id);
+  var text_answer =$$('#text_answer_'+training_question_id)[0].value;
+  var student_training_question_set_id = localStorage.getItem('student_training_question_set_id');
+  var url = 'http://assessment.express/api/student_training_question_set';
   var access_token = localStorage.getItem('access_token');
   myApp.showPreloader('Answering question...');
   $$.ajax({
     type: 'POST',
     dataType: 'json',
     data : {  access_token : access_token,
-              student_training_evaluation_id : student_training_evaluation_id,
+              student_training_question_set_id : student_training_question_set_id,
               question_id : question_id,
               student_text_answer : text_answer },
     processData: true,
     url: url,
-    success: goToNextQuestion,
+    success: goToNextLocalQuestion,
     error: function answerError(xhr, err) {
       myApp.hidePreloader();
       myApp.alert('An error has occurred', 'Submit Answer Error');
@@ -499,56 +603,81 @@ function submit_textanswer(e) {
   });
 }
 
+
+function setQuestionToStorage(student_training_question_set_id, training_question_id, answer_choice_id)
+{
+  var student_training_question_set = null;
+  student_training_question_sets = JSON.parse(localStorage.getItem('student_training_question_sets'));
+  for(i =0; i < student_training_question_sets.length; i ++)
+  {
+    if(student_training_question_sets[i].id == student_training_question_set_id)
+    {
+      student_training_question_set = student_training_question_sets[i];
+    }
+  }
+  if(student_training_question_set != null)
+  {
+    student_answers = student_training_question_set.student_answer_choices;
+    obj = '{' + '"id": 0 , "student_training_question_set_id": ' + student_training_question_set_id +
+          ', "training_question_id": ' + training_question_id + ', "answer_choice_id": ' + answer_choice_id + '}';
+    student_answers[student_answers.length] = JSON.parse(obj);
+    localStorage.setItem('student_training_question_sets',JSON.stringify(student_training_question_sets));
+  }
+}
+
 function submit_radioanswer(e) {
   //e.preventDefault();
-  var question_id = localStorage.getItem('question_id');
-  var formData = myApp.formToJSON('#submit_radioanswer_'+ question_id);
+  var training_question_id = localStorage.getItem('training_question_id');
+  var formData = myApp.formToJSON('#submit_radioanswer_'+ training_question_id);
   var answer_choice_id = formData.radio_answer;
    if(!isNaN(answer_choice_id))
    {
-      var student_training_evaluation_id = localStorage.getItem('student_training_evaluation_id');
-    var url = 'http://assessment.express/api/student_training_evaluation';
-    var access_token = localStorage.getItem('access_token');
-    myApp.showPreloader('Answering question...');
-    $$.ajax({
-      type: 'POST',
-      dataType: 'json',
-      data : {  access_token : access_token,
-                student_training_evaluation_id : student_training_evaluation_id,
-                question_id : question_id,
-                answer_choice_id : answer_choice_id },
-      processData: true,
-      url: url,
-      success: goToNextQuestion,
-      error: function answerError(xhr, err) {
-        myApp.hidePreloader();
-        myApp.alert('An error has occurred', 'Submit Answer Error');
-        console.error("Error on ajax call: " + err);
-        //console.log(JSON.stringify(xhr));
-      }
-    });
-   }
+      var student_training_question_set_id = localStorage.getItem('student_training_question_set_id');
+      var url = 'http://assessment.express/api/student_training_question_set';
+      var access_token = localStorage.getItem('access_token');
+      myApp.showPreloader('Answering question...');
+      $$.ajax({
+        type: 'POST',
+        dataType: 'json',
+        data : {  access_token : access_token,
+                  student_training_question_set_id : student_training_question_set_id,
+                  training_question_id : training_question_id,
+                  answer_choice_id : answer_choice_id },
+        processData: true,
+        url: url,
+        success: function saveAnswerAndGoToNextLocalQuestion() {
+          setQuestionToStorage(student_training_question_set_id, training_question_id, answer_choice_id);
+          goToNextLocalQuestion(student_training_question_set_id);
+        },
+        error: function answerError(xhr, err) {
+          myApp.hidePreloader();
+          myApp.alert('An error has occurred', 'Submit Answer Error');
+          console.error("Error on ajax call: " + err);
+          //console.log(JSON.stringify(xhr));
+        }
+      });
+  }
 }
 
 function submit_checkanswer(e) {
  // e.preventDefault();
   var formData = myApp.formToJSON('#submit_checkanswer');
   var answer_choice_ids =  formData.check_answer;
-  var question_id = localStorage.getItem('question_id');
-  var student_training_evaluation_id = localStorage.getItem('student_training_evaluation_id');
-  var url = 'http://assessment.express/api/student_training_evaluation';
+  var training_question_id = localStorage.getItem('training_question_id');
+  var student_training_question_set_id = localStorage.getItem('student_training_question_set_id');
+  var url = 'http://assessment.express/api/student_training_question_set';
   var access_token = localStorage.getItem('access_token');
   myApp.showPreloader('Answering question...');
   $$.ajax({
     type: 'POST',
     dataType: 'json',
     data : {  access_token : access_token,
-              student_training_evaluation_id : student_training_evaluation_id,
-              question_id : question_id,
+              student_training_question_set_id : student_training_question_set_id,
+              training_question_id : training_question_id,
               answer_choice_ids : answer_choice_ids },
     processData: true,
     url: url,
-    success: goToNextQuestion,
+    success: goToNextLocalQuestion,
     error: function answerError(xhr, err) {
       myApp.hidePreloader();
       myApp.alert('An error has occurred', 'Submit Answer Error');
@@ -569,4 +698,3 @@ $$(document).on('submit', '#login', function login_with_form(e) {
 //$$(document).on('submit', '#submit_checkanswer', submit_checkanswer);
 //$$(document).on('submit', '#submit_textanswer', submit_textanswer);
 $$(document).on('submit', '#submit_training_code', add_training);
-

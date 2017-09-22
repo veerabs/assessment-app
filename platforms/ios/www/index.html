@@ -248,7 +248,7 @@
             <ul>
               {{#each trainings}}
                 <li>
-                  <a href="#" class="item-link item-content student_training_evaluation_link" style="padding-left: 0px !important;"
+                  <a href="#" class="item-link item-content student_training_question_set_link" style="padding-left: 0px !important;"
                     data-item="{{this.id}}">
                   <div class="card my-card" data-item="{{this.id}}">
                     <div class="card-header my-card bold" data-item="{{this.id}}">{{this.training.name}}</div>
@@ -273,7 +273,7 @@
     </div>
   </script>
 
-  <script type="text/template7" id="student_training_evaluations">
+  <script type="text/template7" id="student_training_question_sets">
     {{#if @global.ios}}
     <!-- Dynamic navbar for iOS theme -->
     <div class="navbar">
@@ -285,7 +285,7 @@
     </div>
     {{/if}}
 
-    <div class="page" data-page="student_training_evaluations">
+    <div class="page" data-page="student_training_question_sets">
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
            <div class="navbar">
@@ -296,19 +296,19 @@
             </div>
           </div>
         {{/if}}
-        <div class="page-content">
+        <div class=" page-content">
           <div class="list-block media-list">
             <div class='choose-assessment'>Select a set to take assessment:</div>
             <ul class='assessments-list'>
             <li ></li>
-              {{#each student_training_evaluations}}
+              {{#each student_training_question_sets}}
               <li>
                 {{#js_compare "this.status === 1"}}
                 <a href="#" class="take-assessment-button"  data-item="{{this.id}}" >
                   <div class="card" data-item="{{this.id}}">
                     <div class="card-content" data-item="{{this.id}}">
                       <div class="card-content-inner" data-item="{{this.id}}">
-                        <div class="track-name"  data-item="{{this.id}}">{{this.evaluation.name}}
+                        <div class="track-name"  data-item="{{this.id}}">{{this.training_question_set.name}}
                         </div>
                       </div>
                     </div>
@@ -355,23 +355,14 @@
           <h4>{{question.text}}</h4>
           <div class="list-block">
             <ul>
-              {{#each question.answer_choices}}
-                <li>
-                  <label class="label-radio item-content">
-                    <input type="radio" data-item="{{this.question_id}}" clas="radio_answer_{{this.question_id}}" name="radio_answer" id="radio_answer_{{this.question_id}}_{{this.id}}" required value="{{this.id}}">
-                    <div class="item-media">
-                      <i class="icon icon-form-radio"></i>
-                    </div>
-                    <div class="item-inner">
-                      <div class="">{{this.text}}</div>
-                    </div>
-                  </label>
-                </li>
+
+              {{radio_buttons question}}
+
               {{/each}}
             </ul>
           </div>
           <div class="next-group">
-            <input type="hidden" id="student_training_evaluation_id" value="{{student_training_evaluation_id}}" />
+            <input type="hidden" id="student_training_question_set_id" value="{{student_training_question_set_id}}" />
             <input type="hidden" id="question_id" value="{{question.id}}" />
             <!--<input type="submit" onclick="submit_radioanswer(this)" class="button button-big button-fill answer-submit" value="Next" />-->
             <a href='#' onclick='submit_radioanswer(this)' class="login-button login-submit"><img src='{{@global.imagepath}}next.png' /></a>
@@ -431,7 +422,7 @@
             </ul>
           </div>
           <div class="next-group">
-            <input type="hidden" id="student_training_evaluation_id" value="{{student_training_evaluation_id}}" />
+            <input type="hidden" id="student_training_question_set_id" value="{{student_training_question_set_id}}" />
             <input type="hidden" id="question_id" value="{{question.id}}" />
             <!--<input type="submit" class="button button-big button-fill answer-submit" value="Next" />-->
             <a href='#' onclick='submit_checkanswer(this)' class="login-button login-submit"><img src='{{@global.imagepath}}next.png' /></a>
@@ -485,7 +476,7 @@
             </ul>
           </div>
           <div class="next-group">
-            <input type="hidden" id="student_training_evaluation_id" value="{{student_training_evaluation_id}}" />
+            <input type="hidden" id="student_training_question_set_id" value="{{student_training_question_set_id}}" />
             <input type="hidden" id="question_id" value="{{question.id}}" />
             <!--<input type="submit"  onclick="submit_textanswer(this)" class="button button-big button-fill answer-submit" value="Next" />-->
             <a href='#' onclick='submit_textanswer(this)' class="login-button login-submit"><img src='{{@global.imagepath}}next.png' /></a>
