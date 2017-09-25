@@ -280,6 +280,7 @@ function login(username, password) {
       myApp.hidePreloader();
       access_token = JSON.parse(resp).access_token;
       localStorage.setItem('access_token', access_token);
+
         var url = 'http://assessment.express/api/student_trainings?access_token=' + access_token;
         //e.preventDefault();
 
@@ -366,7 +367,13 @@ function getNextQuestionFromStorage(student_training_question_set_id)
   }
   if(student_training_question_set != null)
   {
-    student_answers = student_training_question_set.student_answer_choices;
+    student_answers = JSON.parse(localStorage.getItem('answers'));
+    if(student_answers == null)
+    {
+      obj2 = '[]';
+      student_answers = JSON.parse(obj2);
+      localStorage.setItem('answers', JSON.stringify(student_answers));
+    }
     training_questions = student_training_question_set.training_question_set.training_questions;
     for (j=0; j< training_questions.length; j++)
     {
@@ -403,10 +410,16 @@ function goToNextLocalQuestion(student_training_question_set_id)
 
   template = null;
   resp = getNextQuestionFromStorage(student_training_question_set_id);
-
-  localStorage.setItem('training_question_id', resp.id);
-  if(resp.status != 'empty') //if resp has an asnwer_type_id
+  if(resp == null)
   {
+    endQuestionSet(student_training_question_set_id);
+    localStorage.setItem('student_training_question_set_id',null);
+    student_training_id=localStorage.getItem('student_training_id');
+    show_student_training_question_sets(student_training_id, true, true);
+  }
+  else
+  {
+    localStorage.setItem('training_question_id', resp.id);
     if (resp.answer_type_id == '1')
     {
       template = myApp.templates.text_question;
@@ -428,13 +441,22 @@ function goToNextLocalQuestion(student_training_question_set_id)
         reload: reload
     });
   }
-  else
-  {
-    localStorage.setItem('student_training_question_set_id',null);
-    student_training_id=localStorage.getItem('student_training_id');
-    show_student_training_question_sets(student_training_id, true, true);
-  }
 }
+
+function endQuestionSet(student_training_question_set_id)
+{
+  var student_training_question_set = null;
+  student_training_question_sets = JSON.parse(localStorage.getItem('student_training_question_sets'));
+  for(i =0; i < student_training_question_sets.length; i ++)
+  {
+    if(student_training_question_sets[i].id == student_training_question_set_id)
+    {
+      student_training_question_sets.status = 2;
+    }
+  }
+  localStorage.setItem('student_training_question_sets', JSON.stringify(student_training_question_sets));
+}
+
 
 function goToNextQuestion(student_training_question_set_id)
 {
@@ -514,6 +536,49 @@ function goToNextQuestion(student_training_question_set_id)
 }
 
 
+function setAnswerToStorage(student_training_question_set_id, training_question_id, answer_choice_id)
+{
+  var student_training_question_set = null;
+  student_training_question_sets = JSON.parse(localStorage.getItem('student_training_question_sets'));
+  for(i =0; i < student_training_question_sets.length; i ++)
+  {
+    if(student_training_question_sets[i].id == student_training_question_set_id)
+    {
+      student_training_question_set = student_training_question_sets[i];
+    }
+  }
+  if(student_training_question_set != null)
+  {
+    student_answers = student_training_question_set.student_answer_choices;
+    obj = '{' + '"id": 0, "student_training_question_set_id": ' + student_training_question_set_id +
+          ', "training_question_id": ' + training_question_id + ', "answer_choice_id": ' + answer_choice_id + '}';
+    student_answers[student_answers.length] = JSON.parse(obj);
+    localStorage.setItem('student_training_question_sets',JSON.stringify(student_training_question_sets));
+
+    answers = student_training_question_sets = JSON.parse(localStorage.getItem('answers'));
+    if(answers == null) {
+      obj2 = '[]';
+      answers = JSON.parse(obj2);
+    }
+      answers[answers.length] = JSON.parse(obj);
+      localStorage.setItem('answers',JSON.stringify(answers));
+  }
+}
+
+function updateAnswerToStorage(training_question_id, answer_choice_id, student_answer_choice_id)
+{
+  var student_training_question_set = null;
+  student_answers = JSON.parse(localStorage.getItem('answers'));
+  for(i =0; i < student_answers.length; i ++)
+  {
+    if(student_answers[i].training_question_id == training_question_id && student_answers[i].answer_choice_id == answer_choice_id)
+    {
+      student_answers[i].id = student_answer_choice_id;
+      localStorage.setItem('answers',JSON.stringify(student_answers));
+      return;
+    }
+  }
+}
 
 function add_training(e) {
   training_code = e.target[0].value;
@@ -603,28 +668,6 @@ function submit_textanswer(e) {
   });
 }
 
-
-function setQuestionToStorage(student_training_question_set_id, training_question_id, answer_choice_id)
-{
-  var student_training_question_set = null;
-  student_training_question_sets = JSON.parse(localStorage.getItem('student_training_question_sets'));
-  for(i =0; i < student_training_question_sets.length; i ++)
-  {
-    if(student_training_question_sets[i].id == student_training_question_set_id)
-    {
-      student_training_question_set = student_training_question_sets[i];
-    }
-  }
-  if(student_training_question_set != null)
-  {
-    student_answers = student_training_question_set.student_answer_choices;
-    obj = '{' + '"id": 0 , "student_training_question_set_id": ' + student_training_question_set_id +
-          ', "training_question_id": ' + training_question_id + ', "answer_choice_id": ' + answer_choice_id + '}';
-    student_answers[student_answers.length] = JSON.parse(obj);
-    localStorage.setItem('student_training_question_sets',JSON.stringify(student_training_question_sets));
-  }
-}
-
 function submit_radioanswer(e) {
   //e.preventDefault();
   var training_question_id = localStorage.getItem('training_question_id');
@@ -635,29 +678,13 @@ function submit_radioanswer(e) {
       var student_training_question_set_id = localStorage.getItem('student_training_question_set_id');
       var url = 'http://assessment.express/api/student_training_question_set';
       var access_token = localStorage.getItem('access_token');
-      myApp.showPreloader('Answering question...');
-      $$.ajax({
-        type: 'POST',
-        dataType: 'json',
-        data : {  access_token : access_token,
-                  student_training_question_set_id : student_training_question_set_id,
-                  training_question_id : training_question_id,
-                  answer_choice_id : answer_choice_id },
-        processData: true,
-        url: url,
-        success: function saveAnswerAndGoToNextLocalQuestion() {
-          setQuestionToStorage(student_training_question_set_id, training_question_id, answer_choice_id);
-          goToNextLocalQuestion(student_training_question_set_id);
-        },
-        error: function answerError(xhr, err) {
-          myApp.hidePreloader();
-          myApp.alert('An error has occurred', 'Submit Answer Error');
-          console.error("Error on ajax call: " + err);
-          //console.log(JSON.stringify(xhr));
-        }
-      });
+      setAnswerToStorage(student_training_question_set_id, training_question_id, answer_choice_id);
+      goToNextLocalQuestion(student_training_question_set_id);
   }
 }
+
+
+
 
 function submit_checkanswer(e) {
  // e.preventDefault();
@@ -698,3 +725,42 @@ $$(document).on('submit', '#login', function login_with_form(e) {
 //$$(document).on('submit', '#submit_checkanswer', submit_checkanswer);
 //$$(document).on('submit', '#submit_textanswer', submit_textanswer);
 $$(document).on('submit', '#submit_training_code', add_training);
+
+setInterval(work, 15000);
+
+function work(e) {
+  syncAnswersToServer();
+}
+
+
+function syncAnswersToServer() {
+  student_answers = JSON.parse(localStorage.getItem('answers'));
+  if (student_answers != null)
+  {
+    access_token = localStorage.getItem('access_token');
+    var url = 'http://assessment.express/api/student_training_question_set';
+    for(i =0; i < student_answers.length; i ++)
+    {
+      if(student_answers[i].id == 0 )
+      {
+          $$.ajax({
+            type: 'POST',
+            dataType: 'json',
+            data : {  access_token : access_token,
+                      student_training_question_set_id : student_answers[i].student_training_question_set_id,
+                      training_question_id : student_answers[i].training_question_id,
+                      answer_choice_id : student_answers[i].answer_choice_id },
+            processData: true,
+            url: url,
+            success: function saveAnswerAndGoToNextLocalQuestion(resp) {
+              updateAnswerToStorage(resp.training_question_id, resp.answer_choice_id, resp.student_answer_choice_id);
+              console.log("Answer written to server. Answer_choice_id:" + resp.student_answer_choice_id);
+            },
+            error: function answerError(xhr, err) {
+              console.error("Error on ajax call: " + err);
+            }
+          });
+      }
+    }
+  }
+}
