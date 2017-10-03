@@ -88,6 +88,14 @@ $$(document).on('deviceready', function deviceIsReady() {
   {
     getStatus(access_token);
   }
+  else
+  {
+    mainView.router.load({
+      template: myApp.templates.loginpage,
+      animatePages: true,
+      force: true,
+    });
+  }
 
   $$('.img').each(function() {
      var $img = $$(this);
@@ -216,7 +224,6 @@ $$(document).on('click', '.panel .favorites-link', function searchLink() {
 });
 
 $$(document).on('click', '.panel .logout-link', function logoutLink() {
-  // @TODO fetch the favorites (if any) from localStorage
   localStorage.removeItem("access_token");;
   mainView.router.load({
     template: myApp.templates.loginpage,
@@ -337,6 +344,8 @@ function getTrainings(e) {
         template: myApp.templates.trainings,
         context: {
           trainings: resp,
+          reload: true,
+          reloadPrevious: true
         },
       });
     },
