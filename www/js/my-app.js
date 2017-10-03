@@ -86,7 +86,7 @@ $$(document).on('deviceready', function deviceIsReady() {
   access_token=localStorage.getItem('access_token');
   if(access_token != null)
   {
-    getStatus(access_token);
+    loadTrainingPage(access_token);
   }
   else
   {
@@ -94,6 +94,8 @@ $$(document).on('deviceready', function deviceIsReady() {
       template: myApp.templates.loginpage,
       animatePages: true,
       force: true,
+      reload: true,
+      reloadPrevious: true
     });
   }
 
@@ -108,7 +110,7 @@ $$(document).on('deviceready', function deviceIsReady() {
 
 
 
-function getStatus(access_token)
+function loadTrainingPage(access_token)
 {
   var url = 'http://assessment.express/api/student_trainings?access_token=' + access_token;
   //e.preventDefault();
@@ -345,7 +347,8 @@ function getTrainings(e) {
         context: {
           trainings: resp,
           reload: true,
-          reloadPrevious: true
+          reloadPrevious: true,
+          force: true
         },
       });
     },
