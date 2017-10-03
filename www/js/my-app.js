@@ -158,7 +158,7 @@ function show_student_training_question_sets(student_training_id, reload, reload
           student_training_question_sets: resp,
         },
         reload: reload,
-        reloadPrevious: false
+        reloadPrevious: reloadPrevious
       });
     },
     error: function assesssmentsError(xhr, err) {
@@ -196,7 +196,7 @@ $$(document).on('click', '.back_to_training', function question_setLink(e)
 $$(document).on('click', '.take-assessment-button', function question_setLink(e)
 {
   student_training_question_set_id = e.target.dataset.item;
-  goToNextLocalQuestion(student_training_question_set_id);
+  goToNextLocalQuestion(student_training_question_set_id, false);
 });
 
 $$(document).on('click', '.panel .training-link', function trainingLink() {
@@ -299,6 +299,7 @@ function login(username, password) {
                 trainings: resp,
               },
               reload: true,
+              reloadPrevious: true,
               pushState: false
             });
           },
@@ -394,18 +395,16 @@ function getNextQuestionFromStorage(student_training_question_set_id)
   }
 }
 
-function goToNextLocalQuestion(student_training_question_set_id)
+function goToNextLocalQuestion(student_training_question_set_id, reload)
 {
   myApp.hidePreloader();
   if(isNaN(student_training_question_set_id))
    {
      student_training_question_set_id=localStorage.getItem('student_training_question_set_id');
-     reload = true;
    }
   else
   {
     localStorage.setItem('student_training_question_set_id',student_training_question_set_id);
-    reload = false;
   }
 
   template = null;
@@ -415,7 +414,7 @@ function goToNextLocalQuestion(student_training_question_set_id)
     endQuestionSet(student_training_question_set_id);
     localStorage.setItem('student_training_question_set_id',null);
     student_training_id=localStorage.getItem('student_training_id');
-    show_student_training_question_sets(student_training_id, true, true);
+    show_student_training_question_sets(student_training_id, true, false);
   }
   else
   {
@@ -642,30 +641,17 @@ function add_training(e) {
 
 function submit_textanswer(e) {
   //e.preventDefault();
-  var question_id = localStorage.getItem('question_id');
-  var formData = myApp.formToJSON('#submit_textanswer_'+training_question_id);
+  var training_question_id = localStorage.getItem('training_question_id');
+  var formData = myApp.formToJSON('#submit_radioanswer_'+ training_question_id);
   var text_answer =$$('#text_answer_'+training_question_id)[0].value;
-  var student_training_question_set_id = localStorage.getItem('student_training_question_set_id');
-  var url = 'http://assessment.express/api/student_training_question_set';
-  var access_token = localStorage.getItem('access_token');
-  myApp.showPreloader('Answering question...');
-  $$.ajax({
-    type: 'POST',
-    dataType: 'json',
-    data : {  access_token : access_token,
-              student_training_question_set_id : student_training_question_set_id,
-              question_id : question_id,
-              student_text_answer : text_answer },
-    processData: true,
-    url: url,
-    success: goToNextLocalQuestion,
-    error: function answerError(xhr, err) {
-      myApp.hidePreloader();
-      myApp.alert('An error has occurred', 'Submit Answer Error');
-      console.error("Error on ajax call: " + err);
-      //console.log(JSON.stringify(xhr));
-    }
-  });
+   if(!isNaN(text_answer))
+   {
+      var student_training_question_set_id = localStorage.getItem('student_training_question_set_id');
+      var url = 'http://assessment.express/api/student_training_question_set';
+      var access_token = localStorage.getItem('access_token');
+      setAnswerToStorage(student_training_question_set_id, training_question_id, text_answer);
+      goToNextLocalQuestion(student_training_question_set_id, true);
+  }
 }
 
 function submit_radioanswer(e) {
@@ -679,40 +665,24 @@ function submit_radioanswer(e) {
       var url = 'http://assessment.express/api/student_training_question_set';
       var access_token = localStorage.getItem('access_token');
       setAnswerToStorage(student_training_question_set_id, training_question_id, answer_choice_id);
-      goToNextLocalQuestion(student_training_question_set_id);
+      goToNextLocalQuestion(student_training_question_set_id, true);
   }
 }
 
 
-
-
 function submit_checkanswer(e) {
  // e.preventDefault();
-  var formData = myApp.formToJSON('#submit_checkanswer');
-  var answer_choice_ids =  formData.check_answer;
   var training_question_id = localStorage.getItem('training_question_id');
-  var student_training_question_set_id = localStorage.getItem('student_training_question_set_id');
-  var url = 'http://assessment.express/api/student_training_question_set';
-  var access_token = localStorage.getItem('access_token');
-  myApp.showPreloader('Answering question...');
-  $$.ajax({
-    type: 'POST',
-    dataType: 'json',
-    data : {  access_token : access_token,
-              student_training_question_set_id : student_training_question_set_id,
-              training_question_id : training_question_id,
-              answer_choice_ids : answer_choice_ids },
-    processData: true,
-    url: url,
-    success: goToNextLocalQuestion,
-    error: function answerError(xhr, err) {
-      myApp.hidePreloader();
-      myApp.alert('An error has occurred', 'Submit Answer Error');
-      console.error("Error on ajax call: " + err);
-      //console.log(JSON.stringify(xhr));
-    }
-  });
-  //return false;
+  var formData = myApp.formToJSON('#submit_radioanswer_'+ training_question_id);
+  var answer_choice_ids = formData.check_answer;
+   if(!isNaN(answer_choice_ids))
+   {
+      var student_training_question_set_id = localStorage.getItem('student_training_question_set_id');
+      var url = 'http://assessment.express/api/student_training_question_set';
+      var access_token = localStorage.getItem('access_token');
+      setAnswerToStorage(student_training_question_set_id, training_question_id, answer_choice_ids);
+      goToNextLocalQuestion(student_training_question_set_id, true);
+  }
 }
 
 $$(document).on('submit', '#login', function login_with_form(e) {
