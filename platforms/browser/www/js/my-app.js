@@ -93,9 +93,7 @@ $$(document).on('deviceready', function deviceIsReady() {
     mainView.router.load({
       template: myApp.templates.loginpage,
       animatePages: true,
-      force: true,
-      reload: true,
-      reloadPrevious: true
+      force: true
     });
   }
 
@@ -212,18 +210,6 @@ $$(document).on('click', '.take-assessment-button', function question_setLink(e)
 $$(document).on('click', '.panel .training-link', function trainingLink() {
   getTrainings(null); });
 
-$$(document).on('click', '.panel .favorites-link', function searchLink() {
-  // @TODO fetch the favorites (if any) from localStorage
-  var favorites = JSON.parse(localStorage.getItem('favorites'));
-  mainView.router.load({
-    template: myApp.templates.favorites,
-    animatePages: false,
-    context: {
-      tracks: favorites,
-    },
-    reload: true,
-  });
-});
 
 $$(document).on('click', '.panel .logout-link', function logoutLink() {
   localStorage.removeItem("access_token");;
